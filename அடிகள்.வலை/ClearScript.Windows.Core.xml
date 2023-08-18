@@ -36,7 +36,7 @@
         </member>
         <member name="T:Microsoft.ClearScript.Windows.Core.NullSyncInvoker">
             <summary>
-            Provides a null <see cref="T:Microsoft.ClearScript.Windows.Core.ISyncInvoker"/> implementation.
+            Provides a null <c><see cref="T:Microsoft.ClearScript.Windows.Core.ISyncInvoker"/></c> implementation.
             </summary>
             <remarks>
             This class does not enforce thread affinity and should be used with caution. Windows Script
@@ -45,7 +45,7 @@
         </member>
         <member name="F:Microsoft.ClearScript.Windows.Core.NullSyncInvoker.Instance">
             <summary>
-            The sole instance of the <see cref="T:Microsoft.ClearScript.Windows.Core.NullSyncInvoker"/> class.
+            The sole instance of the <c><see cref="T:Microsoft.ClearScript.Windows.Core.NullSyncInvoker"/></c> class.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.Windows.Core.NullSyncInvoker.CheckAccess">
@@ -54,7 +54,7 @@
             </summary>
             <returns><c>True</c> if the calling thread has access to the script engine, <c>false</c> otherwise.</returns>
             <remarks>
-            The <see cref="T:Microsoft.ClearScript.Windows.Core.NullSyncInvoker"/> implementation of this method always returns <c>true</c>.
+            The <c><see cref="T:Microsoft.ClearScript.Windows.Core.NullSyncInvoker"/></c> implementation of this method always returns <c>true</c>.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.Windows.Core.NullSyncInvoker.VerifyAccess">
@@ -62,7 +62,7 @@
             Enforces that the calling thread has access to the script engine.
             </summary>
             <remarks>
-            The <see cref="T:Microsoft.ClearScript.Windows.Core.NullSyncInvoker"/> implementation of this method performs no action.
+            The <c><see cref="T:Microsoft.ClearScript.Windows.Core.NullSyncInvoker"/></c> implementation of this method performs no action.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.Windows.Core.NullSyncInvoker.Invoke(System.Action)">
@@ -71,7 +71,7 @@
             </summary>
             <param name="action">The delegate to invoke on the script engine's thread.</param>
             <remarks>
-            The <see cref="T:Microsoft.ClearScript.Windows.Core.NullSyncInvoker"/> implementation of this method invokes
+            The <c><see cref="T:Microsoft.ClearScript.Windows.Core.NullSyncInvoker"/></c> implementation of this method invokes
             <paramref name="action"></paramref> without synchronization.
             </remarks>
         </member>
@@ -83,7 +83,7 @@
             <param name="func">The delegate to invoke on the script engine's thread.</param>
             <returns>The delegate's return value.</returns>
             <remarks>
-            The <see cref="T:Microsoft.ClearScript.Windows.Core.NullSyncInvoker"/> implementation of this method invokes
+            The <c><see cref="T:Microsoft.ClearScript.Windows.Core.NullSyncInvoker"/></c> implementation of this method invokes
             <paramref name="func"></paramref> without synchronization.
             </remarks>
         </member>
@@ -93,7 +93,7 @@
             </summary>
             <remarks>
             This class can be used in non-desktop environments such as server applications. An
-            implementation of <see cref="T:Microsoft.ClearScript.Windows.Core.ISyncInvoker"/> is required to enforce thread affinity.
+            implementation of <c><see cref="T:Microsoft.ClearScript.Windows.Core.ISyncInvoker"/></c> is required to enforce thread affinity.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.Windows.Core.JScriptEngine.#ctor(Microsoft.ClearScript.Windows.Core.ISyncInvoker)">
@@ -146,7 +146,7 @@
             Gets the script engine's recommended file name extension for script files.
             </summary>
             <remarks>
-            <see cref="T:Microsoft.ClearScript.Windows.Core.JScriptEngine"/> instances return "js" for this property.
+            <c><see cref="T:Microsoft.ClearScript.Windows.Core.JScriptEngine"/></c> instances return "js" for this property.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.Windows.Core.JScriptEngine.ExecuteCommand(System.String)">
@@ -157,14 +157,14 @@
             <returns>The command output.</returns>
             <remarks>
             <para>
-            This method is similar to <see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String)"/> but optimized for
+            This method is similar to <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String)"/></c> but optimized for
             command consoles. The specified command must be limited to a single expression or
             statement. Script engines can override this method to customize command execution as
             well as the process of converting the result to a string for console output.
             </para>
             <para>
-            The <see cref="T:Microsoft.ClearScript.Windows.Core.JScriptEngine"/> version of this method attempts to use
-            <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/tostring">toString</see>
+            The <c><see cref="T:Microsoft.ClearScript.Windows.Core.JScriptEngine"/></c> version of this method attempts to use
+            <c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/tostring">toString</see></c>
             to convert the return value.
             </para>
             </remarks>
@@ -175,7 +175,7 @@
             </summary>
             <remarks>
             This class can be used in non-desktop environments such as server applications. An
-            implementation of <see cref="T:Microsoft.ClearScript.Windows.Core.ISyncInvoker"/> is required to enforce thread affinity.
+            implementation of <c><see cref="T:Microsoft.ClearScript.Windows.Core.ISyncInvoker"/></c> is required to enforce thread affinity.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.Windows.Core.VBScriptEngine.#ctor(Microsoft.ClearScript.Windows.Core.ISyncInvoker)">
@@ -227,7 +227,7 @@
             Gets the script engine's recommended file name extension for script files.
             </summary>
             <remarks>
-            <see cref="T:Microsoft.ClearScript.Windows.Core.VBScriptEngine"/> instances return "vbs" for this property.
+            <c><see cref="T:Microsoft.ClearScript.Windows.Core.VBScriptEngine"/></c> instances return "vbs" for this property.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.Windows.Core.VBScriptEngine.ExecuteCommand(System.String)">
@@ -238,16 +238,16 @@
             <returns>The command output.</returns>
             <remarks>
             <para>
-            This method is similar to <see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String)"/> but optimized for
+            This method is similar to <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String)"/></c> but optimized for
             command consoles. The specified command must be limited to a single expression or
             statement. Script engines can override this method to customize command execution as
             well as the process of converting the result to a string for console output.
             </para>
             <para>
-            The <see cref="T:Microsoft.ClearScript.Windows.Core.VBScriptEngine"/> version of this method supports both expressions and
+            The <c><see cref="T:Microsoft.ClearScript.Windows.Core.VBScriptEngine"/></c> version of this method supports both expressions and
             statements. If the specified command begins with "eval " (not case-sensitive), the
             engine executes the remainder as an expression and attempts to use
-            <see href="https://docs.microsoft.com/en-us/previous-versions//0zk841e9(v=vs.85)">CStr</see>
+            <c><see href="https://docs.microsoft.com/en-us/previous-versions//0zk841e9(v=vs.85)">CStr</see></c>
             to convert the result value. Otherwise, it executes the command as a statement and does
             not return a value.
             </para>
@@ -259,7 +259,7 @@
             </summary>
             <remarks>
             This class can be used in non-desktop environments such as server applications. An
-            implementation of <see cref="T:Microsoft.ClearScript.Windows.Core.ISyncInvoker"/> is required to enforce thread affinity.
+            implementation of <c><see cref="T:Microsoft.ClearScript.Windows.Core.ISyncInvoker"/></c> is required to enforce thread affinity.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.Windows.Core.WindowsScriptEngine.#ctor(System.String,System.String,System.String,Microsoft.ClearScript.Windows.WindowsScriptEngineFlags,Microsoft.ClearScript.Windows.Core.ISyncInvoker)">
@@ -278,7 +278,7 @@
         </member>
         <member name="P:Microsoft.ClearScript.Windows.Core.WindowsScriptEngine.SyncInvoker">
             <summary>
-            Gets the <see cref="T:Microsoft.ClearScript.Windows.Core.ISyncInvoker"/> implementation associated with the current script engine.
+            Gets the <c><see cref="T:Microsoft.ClearScript.Windows.Core.ISyncInvoker"/></c> implementation associated with the current script engine.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.Windows.Core.WindowsScriptEngine.CheckAccess">
@@ -299,12 +299,23 @@
         </member>
         <member name="P:Microsoft.ClearScript.Windows.Core.WindowsScriptEngine.Script">
             <summary>
-            Allows the host to access script resources directly.
+            Allows the host to access script resources dynamically.
             </summary>
             <remarks>
             The value of this property is an object that is bound to the script engine's root
             namespace. It dynamically supports properties and methods that correspond to global
             script objects and functions.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.ClearScript.Windows.Core.WindowsScriptEngine.Global">
+            <summary>
+            Allows the host to access script resources.
+            </summary>
+            <remarks>
+            The value of this property is an object that is bound to the script engine's root
+            namespace. It allows you to access global script resources via the
+            <c><see cref="T:Microsoft.ClearScript.ScriptObject"/></c> class interface. Doing so is likely to perform better than
+            dynamic access via <c><see cref="P:Microsoft.ClearScript.Windows.Core.WindowsScriptEngine.Script"/></c>.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.Windows.Core.WindowsScriptEngine.GetStackTrace">
@@ -318,7 +329,7 @@
             The stack trace text format is defined by the script engine.
             </para>
             <para>
-            The <see cref="T:Microsoft.ClearScript.Windows.Core.WindowsScriptEngine"/> version of this method returns the empty string
+            The <c><see cref="T:Microsoft.ClearScript.Windows.Core.WindowsScriptEngine"/></c> version of this method returns the empty string
             if script debugging features have not been enabled for the instance.
             </para>
             </remarks>
@@ -343,11 +354,11 @@
             </summary>
             <param name="disposing"><c>True</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
             <remarks>
-            This method is called by the public <see cref="M:Microsoft.ClearScript.ScriptEngine.Dispose"/> method and the
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.Finalize">Finalize</see> method.
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.Dispose"/> invokes the protected <c>Dispose(Boolean)</c>
+            This method is called by the public <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Dispose"/></c> method and the
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Finalize">Finalize</see></c> method.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Dispose"/></c> invokes the protected <c>Dispose(Boolean)</c>
             method with the <paramref name="disposing"/> parameter set to <c>true</c>.
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.Finalize">Finalize</see> invokes <c>Dispose(Boolean)</c> with
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Finalize">Finalize</see></c> invokes <c>Dispose(Boolean)</c> with
             <paramref name="disposing"/> set to <c>false</c>.
             </remarks>
         </member>
@@ -355,7 +366,7 @@
             <summary>
             Allows Windows Script engines to display dialogs within the host's user interface.
             </summary>
-            <seealso cref="P:Microsoft.ClearScript.Windows.Core.WindowsScriptEngine.HostWindow"/>
+            <c><seealso cref="P:Microsoft.ClearScript.Windows.Core.WindowsScriptEngine.HostWindow"/></c>
         </member>
         <member name="P:Microsoft.ClearScript.Windows.IHostWindow.OwnerHandle">
             <summary>
@@ -394,7 +405,7 @@
         </member>
         <member name="F:Microsoft.ClearScript.Windows.Nothing.Value">
             <summary>
-            The sole instance of the <see cref="T:Microsoft.ClearScript.Windows.Nothing"/> class.
+            The sole instance of the <c><see cref="T:Microsoft.ClearScript.Windows.Nothing"/></c> class.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.Windows.Nothing.ToString">
@@ -403,7 +414,7 @@
             </summary>
             <returns>A string that represents the current object.</returns>
             <remarks>
-            The <see cref="T:Microsoft.ClearScript.Windows.Nothing"/> version of this method returns "[nothing]".
+            The <c><see cref="T:Microsoft.ClearScript.Windows.Nothing"/></c> version of this method returns "[nothing]".
             </remarks>
         </member>
         <member name="T:Microsoft.ClearScript.Windows.WindowsScriptEngineFlags">
@@ -423,33 +434,33 @@
         </member>
         <member name="F:Microsoft.ClearScript.Windows.WindowsScriptEngineFlags.EnableJITDebugging">
             <summary>
-            Specifies that Just-In-Timestamp script debugging is to be enabled. This option is ignored
-            if <see cref="F:Microsoft.ClearScript.Windows.WindowsScriptEngineFlags.EnableDebugging"/> is not specified.
+            Specifies that Just-In-Time script debugging is to be enabled. This option is ignored
+            if <c><see cref="F:Microsoft.ClearScript.Windows.WindowsScriptEngineFlags.EnableDebugging"/></c> is not specified.
             </summary>
         </member>
         <member name="F:Microsoft.ClearScript.Windows.WindowsScriptEngineFlags.DisableSourceManagement">
             <summary>
             Specifies that smart source document management is to be disabled. This option is
-            ignored if <see cref="F:Microsoft.ClearScript.Windows.WindowsScriptEngineFlags.EnableDebugging"/> is not specified.
+            ignored if <c><see cref="F:Microsoft.ClearScript.Windows.WindowsScriptEngineFlags.EnableDebugging"/></c> is not specified.
             </summary>
         </member>
         <member name="F:Microsoft.ClearScript.Windows.WindowsScriptEngineFlags.EnableStandardsMode">
             <summary>
             Specifies that script language features that enhance standards compliance are to be
-            enabled. This option only affects <see cref="T:Microsoft.ClearScript.Windows.Core.JScriptEngine"/>.
+            enabled. This option only affects <c><see cref="T:Microsoft.ClearScript.Windows.Core.JScriptEngine"/></c>.
             </summary>
         </member>
         <member name="F:Microsoft.ClearScript.Windows.WindowsScriptEngineFlags.MarshalNullAsDispatch">
             <summary>
             Specifies that <c>null</c> is to be marshaled as a variant of type <c>VT_DISPATCH</c>.
             This option does not affect field, property, or method return values declared as
-            <see cref="T:System.Object"/>, <see cref="T:System.String"/>, nullable <see cref="T:System.Boolean"/>, or nullable
+            <c><see cref="T:System.Object"/></c>, <c><see cref="T:System.String"/></c>, nullable <c><see cref="T:System.Boolean"/></c>, or nullable
             numeric types.
             </summary>
         </member>
         <member name="F:Microsoft.ClearScript.Windows.WindowsScriptEngineFlags.MarshalDecimalAsCurrency">
             <summary>
-            Specifies that <see cref="T:System.Decimal"/> values are to be marshaled as variants of type
+            Specifies that <c><see cref="T:System.Decimal"/></c> values are to be marshaled as variants of type
             <c>VT_CY</c>.
             </summary>
         </member>
@@ -458,27 +469,27 @@
             Specifies that managed arrays that are passed or returned to script code are to be
             converted to script arrays and marshaled as variants of type <c>VT_ARRAY</c>. In
             VBScript these objects are the native array type. JScript code can use the
-            <see href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/scripting-articles/y39d47w8(v=vs.84)">VBArray</see>
+            <c><see href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/scripting-articles/y39d47w8(v=vs.84)">VBArray</see></c>
             object to access them.
             </summary>
         </member>
         <member name="F:Microsoft.ClearScript.Windows.WindowsScriptEngineFlags.DoNotEnableVTablePatching">
             <summary>
-            When <see cref="F:Microsoft.ClearScript.Windows.WindowsScriptEngineFlags.EnableStandardsMode"/> is specified, the ClearScript library uses
+            When <c><see cref="F:Microsoft.ClearScript.Windows.WindowsScriptEngineFlags.EnableStandardsMode"/></c> is specified, the ClearScript library uses
             virtual method table patching to support JScript-specific
-            <see href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/scripting-articles/sky96ah7(v=vs.94)">IDispatchEx</see>
+            <c><see href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/scripting-articles/sky96ah7(v=vs.94)">IDispatchEx</see></c>
             extensions that otherwise interfere with some host object functionality. Virtual method
             table patching is a very low-level mechanism with global effect. This option specifies
             that virtual method table patching is not to be enabled on behalf of the current
-            <see cref="T:Microsoft.ClearScript.Windows.Core.JScriptEngine"/> instance.
+            <c><see cref="T:Microsoft.ClearScript.Windows.Core.JScriptEngine"/></c> instance.
             </summary>
         </member>
         <member name="F:Microsoft.ClearScript.Windows.WindowsScriptEngineFlags.MarshalDateTimeAsDate">
             <summary>
-            Specifies that <see cref="T:System.DateTime"/> values are to be marshaled as variants of type
+            Specifies that <c><see cref="T:System.DateTime"/></c> values are to be marshaled as variants of type
             <c>VT_DATE</c>. In VBScript these objects are the native date-time type. JScript code
             can pass them to the
-            <see href="https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2010/dca21baa(v=vs.100)">Date</see>
+            <c><see href="https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2010/dca21baa(v=vs.100)">Date</see></c>
             constructor for property access.
             </summary>
         </member>

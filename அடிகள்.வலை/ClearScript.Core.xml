@@ -9,7 +9,56 @@
             Represents a method that specifies to a script engine whether script execution should continue.
             </summary>
             <returns><c>True</c> to continue script execution, <c>false</c> to interrupt it.</returns>
-            <seealso cref="P:Microsoft.ClearScript.ScriptEngine.ContinuationCallback"/>
+            <c><seealso cref="P:Microsoft.ClearScript.ScriptEngine.ContinuationCallback"/></c>
+        </member>
+        <member name="T:Microsoft.ClearScript.CustomAttributeLoader">
+            <summary>
+            Represents a custom attribute loader.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ClearScript.CustomAttributeLoader.#ctor">
+            <summary>
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.CustomAttributeLoader"/></c> instance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ClearScript.CustomAttributeLoader.LoadCustomAttributes``1(System.Reflection.ICustomAttributeProvider,System.Boolean)">
+            <summary>
+            Loads custom attributes of the specified type for the given resource.
+            </summary>
+            <typeparam name="T">The type, or a base type, of the custom attributes to load.</typeparam>
+            <param name="resource">The resource for which to load custom attributes of type <typeparamref name="T"/>.</param>
+            <param name="inherit"><c>True</c> to include custom attributes of type <typeparamref name="T"/> defined for ancestors of <paramref name="resource"/>, <c>false</c> otherwise.</param>
+            <returns>An array of custom attributes of type <typeparamref name="T"/>.</returns>.
+            <remarks>
+            This method is performance-critical. Overrides must not invoke script engine methods or
+            other ClearScript functionality. The base implementation loads custom attributes via
+            reflection.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.ClearScript.DefaultDocumentLoader">
+            <summary>
+            Provides a default <c><see cref="T:Microsoft.ClearScript.DocumentLoader"></see></c> implementation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ClearScript.DefaultDocumentLoader.#ctor">
+            <summary>
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.DefaultDocumentLoader"/></c> instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ClearScript.DefaultDocumentLoader.MaxCacheSize">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.ClearScript.DefaultDocumentLoader.LoadDocumentAsync(Microsoft.ClearScript.DocumentSettings,System.Nullable{Microsoft.ClearScript.DocumentInfo},System.String,Microsoft.ClearScript.DocumentCategory,Microsoft.ClearScript.DocumentContextCallback)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.ClearScript.DefaultDocumentLoader.GetCachedDocument(System.Uri)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.ClearScript.DefaultDocumentLoader.CacheDocument(Microsoft.ClearScript.Document,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.ClearScript.DefaultDocumentLoader.DiscardCachedDocuments">
+            <inheritdoc/>
         </member>
         <member name="T:Microsoft.ClearScript.DefaultScriptUsageAttribute">
             <summary>
@@ -17,18 +66,18 @@
             </summary>
             <remarks>
             This attribute is applicable to classes, enums, interfaces, structs, and assemblies. Use
-            <see cref="T:Microsoft.ClearScript.ScriptUsageAttribute"/>, <see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/>, or
-            <see cref="T:Microsoft.ClearScript.NoScriptAccessAttribute"/> to override it for individual type members.
+            <c><see cref="T:Microsoft.ClearScript.ScriptUsageAttribute"/></c>, <c><see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/></c>, or
+            <c><see cref="T:Microsoft.ClearScript.NoScriptAccessAttribute"/></c> to override it for individual type members.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.DefaultScriptUsageAttribute.#ctor">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.DefaultScriptUsageAttribute"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.DefaultScriptUsageAttribute"/></c> instance.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.DefaultScriptUsageAttribute.#ctor(Microsoft.ClearScript.ScriptAccess)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.DefaultScriptUsageAttribute"/> instance with the specified default script access setting.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.DefaultScriptUsageAttribute"/></c> instance with the specified default script access setting.
             </summary>
             <param name="access">The default script access setting for type members.</param>
         </member>
@@ -44,7 +93,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.Document.#ctor">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.Document"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.Document"/></c> instance.
             </summary>
         </member>
         <member name="P:Microsoft.ClearScript.Document.Info">
@@ -117,7 +166,7 @@
             categories. These are distinct from the caches used by document loaders.
             </para>
             </remarks>
-            <seealso cref="P:Microsoft.ClearScript.DocumentLoader.MaxCacheSize"/>
+            <c><seealso cref="P:Microsoft.ClearScript.DocumentLoader.MaxCacheSize"/></c>
         </member>
         <member name="P:Microsoft.ClearScript.DocumentCategory.Script">
             <summary>
@@ -147,6 +196,15 @@
             Script engines honor this attribute.
             </summary>
         </member>
+        <member name="F:Microsoft.ClearScript.DocumentFlags.AwaitDebuggerAndPause">
+            <summary>
+            Specifies that the script engine is to wait for a debugger connection and schedule a
+            pause before executing the first line of the document. Windows Script engines do not
+            honor this attribute. For it to be effective, debugging features must be enabled, a
+            debugger must not already be connected, and the script engine must not already have
+            waited for a debugger connection.
+            </summary>
+        </member>
         <member name="T:Microsoft.ClearScript.DocumentInfo">
             <summary>
             Contains meta-information for a document.
@@ -154,13 +212,13 @@
         </member>
         <member name="M:Microsoft.ClearScript.DocumentInfo.#ctor(System.String)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.DocumentInfo"/> structure with the specified document name.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.DocumentInfo"/></c> structure with the specified document name.
             </summary>
             <param name="name">The document name.</param>
         </member>
         <member name="M:Microsoft.ClearScript.DocumentInfo.#ctor(System.Uri)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.DocumentInfo"/> structure with the specified document URI.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.DocumentInfo"/></c> structure with the specified document URI.
             </summary>
             <param name="uri">The document URI.</param>
         </member>
@@ -211,8 +269,8 @@
             <para>
             Use 
             <c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import.meta">import.meta</see></c>
-            to access the context information of a <see cref="P:Microsoft.ClearScript.JavaScript.ModuleCategory.Standard"/> JavaScript
-            module. In a <see cref="P:Microsoft.ClearScript.JavaScript.ModuleCategory.CommonJS"/> module, use <c>module.meta</c>.
+            to access the context information of a <c><see cref="P:Microsoft.ClearScript.JavaScript.ModuleCategory.Standard"/></c> JavaScript
+            module. In a <c><see cref="P:Microsoft.ClearScript.JavaScript.ModuleCategory.CommonJS"/></c> module, use <c>module.meta</c>.
             </para>
             </remarks>
         </member>
@@ -233,7 +291,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.DocumentLoader.#ctor">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.DocumentLoader"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.DocumentLoader"/></c> instance.
             </summary>
         </member>
         <member name="P:Microsoft.ClearScript.DocumentLoader.Default">
@@ -249,7 +307,7 @@
             This property specifies the maximum number of documents to be cached by the document
             loader. For the default document loader, its initial value is 1024.
             </remarks>
-            <seealso cref="P:Microsoft.ClearScript.DocumentLoader.Default"/>
+            <c><seealso cref="P:Microsoft.ClearScript.DocumentLoader.Default"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.DocumentLoader.LoadDocument(Microsoft.ClearScript.DocumentSettings,System.Nullable{Microsoft.ClearScript.DocumentInfo},System.String,Microsoft.ClearScript.DocumentCategory,Microsoft.ClearScript.DocumentContextCallback)">
             <summary>
@@ -260,11 +318,11 @@
             <param name="specifier">A string specifying the document to be loaded.</param>
             <param name="category">An optional category for the requested document.</param>
             <param name="contextCallback">An optional context callback for the requested document.</param>
-            <returns>A <see cref="T:Microsoft.ClearScript.Document"/> instance that represents the loaded document.</returns>
+            <returns>A <c><see cref="T:Microsoft.ClearScript.Document"/></c> instance that represents the loaded document.</returns>
             <remarks>
             A loaded document must have an absolute <see cref="P:Microsoft.ClearScript.DocumentInfo.Uri">URI</see>. Once a
             load operation has completed successfully, subsequent requests that resolve to the same
-            URI are expected to return the same <see cref="T:Microsoft.ClearScript.Document"/> reference, although loaders
+            URI are expected to return the same <c><see cref="T:Microsoft.ClearScript.Document"/></c> reference, although loaders
             are not required to manage document caches of unlimited size.
             </remarks>
         </member>
@@ -277,12 +335,30 @@
             <param name="specifier">A string specifying the document to be loaded.</param>
             <param name="category">An optional category for the requested document.</param>
             <param name="contextCallback">An optional context callback for the requested document.</param>
-            <returns>A task that represents the asynchronous operation. Upon completion, the task's result is a <see cref="T:Microsoft.ClearScript.Document"/> instance that represents the loaded document.</returns>
+            <returns>A task that represents the asynchronous operation. Upon completion, the task's result is a <c><see cref="T:Microsoft.ClearScript.Document"/></c> instance that represents the loaded document.</returns>
             <remarks>
             A loaded document must have an absolute <see cref="P:Microsoft.ClearScript.DocumentInfo.Uri">URI</see>. Once a
             load operation has completed successfully, subsequent requests that resolve to the same
-            URI are expected to return the same <see cref="T:Microsoft.ClearScript.Document"/> reference, although loaders
+            URI are expected to return the same <c><see cref="T:Microsoft.ClearScript.Document"/></c> reference, although loaders
             are not required to manage document caches of unlimited size.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.ClearScript.DocumentLoader.GetCachedDocument(System.Uri)">
+            <summary>
+            Searches for a cached document by <see cref="P:Microsoft.ClearScript.DocumentInfo.Uri">URI</see>.
+            </summary>
+            <param name="uri">The document URI for which to search.</param>
+            <returns>The cached document if it was found, <c>null</c> otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.ClearScript.DocumentLoader.CacheDocument(Microsoft.ClearScript.Document,System.Boolean)">
+            <summary>
+            Stores a document in the cache.
+            </summary>
+            <param name="document">The document to store in the cache.</param>
+            <param name="replace"><c>True</c> to replace any existing document with the same URI, <c>false</c> otherwise.</param>
+            <returns>The cached document, which may be different from <paramref name="document"/> if <paramref name="replace"/> is <c>false</c>.</returns>
+            <remarks>
+            A cached document must have an absolute <see cref="P:Microsoft.ClearScript.DocumentInfo.Uri">URI</see>.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.DocumentLoader.DiscardCachedDocuments">
@@ -300,7 +376,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.DocumentSettings.#ctor">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.DocumentSettings"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.DocumentSettings"/></c> instance.
             </summary>
         </member>
         <member name="P:Microsoft.ClearScript.DocumentSettings.Loader">
@@ -334,7 +410,7 @@
             </summary>
             <remarks>
             <para>
-            This property is used as an alternative to <see cref="P:Microsoft.ClearScript.DocumentInfo.ContextCallback"/>.
+            This property is used as an alternative to <c><see cref="P:Microsoft.ClearScript.DocumentInfo.ContextCallback"/></c>.
             If specified, the callback is invoked the first time a module attempts to retrieve its
             context information. The properties it returns are made available to the module
             implementation. This mechanism can be used to expose host resources selectively,
@@ -343,8 +419,8 @@
             <para>
             Use 
             <c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import.meta">import.meta</see></c>
-            to access the context information of a <see cref="P:Microsoft.ClearScript.JavaScript.ModuleCategory.Standard"/> JavaScript
-            module. In a <see cref="P:Microsoft.ClearScript.JavaScript.ModuleCategory.CommonJS"/> module, use <c>module.meta</c>.
+            to access the context information of a <c><see cref="P:Microsoft.ClearScript.JavaScript.ModuleCategory.Standard"/></c> JavaScript
+            module. In a <c><see cref="P:Microsoft.ClearScript.JavaScript.ModuleCategory.CommonJS"/></c> module, use <c>module.meta</c>.
             </para>
             </remarks>
         </member>
@@ -357,7 +433,7 @@
             <remarks>
             System documents take precedence over loaded documents. Once this method is invoked,
             document access using this configuration will always map the combination of
-            <paramref name="identifier"/> and <see cref="P:Microsoft.ClearScript.DocumentCategory.Script"/> to the
+            <paramref name="identifier"/> and <c><see cref="P:Microsoft.ClearScript.DocumentCategory.Script"/></c> to the
             specified document, bypassing the configuration's document loader.
             </remarks>
         </member>
@@ -405,12 +481,12 @@
         </member>
         <member name="T:Microsoft.ClearScript.DynamicHostObject">
             <summary>
-            Extends <see cref="T:System.Dynamic.DynamicObject"/> for enhanced behavior and performance in a scripting environment.
+            Extends <c><see cref="T:System.Dynamic.DynamicObject"/></c> for enhanced behavior and performance in a scripting environment.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.DynamicHostObject.#ctor">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.DynamicHostObject"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.DynamicHostObject"/></c> instance.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.DynamicHostObject.HasMember(System.String,System.Boolean)">
@@ -462,6 +538,39 @@
             <param name="engine">The script engine in which the host object will be used.</param>
             <returns>A host object with the specified type restriction.</returns>
         </member>
+        <member name="M:Microsoft.ClearScript.Extensions.ToRestrictedHostObject(System.Object,System.Type)">
+            <summary>
+            Converts an object to a host object with a type restriction specified as a
+            <see cref="T:System.Type"/> instance, for use with script code currently running on the calling
+            thread.
+            </summary>
+            <param name="target">The object to convert to a host object for use with script code.</param>
+            <param name="type">The type whose members are to be made accessible from script code.</param>
+            <returns>A host object with the specified type restriction.</returns>
+        </member>
+        <member name="M:Microsoft.ClearScript.Extensions.ToRestrictedHostObject(System.Object,System.Type,Microsoft.ClearScript.ScriptEngine)">
+            <summary>
+            Converts an object to a host object with a type restriction specified as a
+            <see cref="T:System.Type"/> instance, for use with script code running in the specified script
+            engine.
+            </summary>
+            <param name="target">The object to convert to a host object for use with script code.</param>
+            <param name="type">The type whose members are to be made accessible from script code.</param>
+            <param name="engine">The script engine in which the host object will be used.</param>
+            <returns>A host object with the specified type restriction.</returns>
+        </member>
+        <member name="T:Microsoft.ClearScript.EventSource">
+            <summary>
+            Provides the base implementation for a host event source.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ClearScript.EventSource.connect(System.Object)">
+            <summary>
+            Connects the host event source to the specified script handler function.
+            </summary>
+            <param name="scriptFunc">The script function that will handle the event.</param>
+            <returns>An <c><see cref="T:Microsoft.ClearScript.EventConnection"/></c> that represents the connection.</returns>
+        </member>
         <member name="T:Microsoft.ClearScript.EventSource`1">
             <summary>
             Represents a host event source.
@@ -473,7 +582,17 @@
             Connects the host event source to the specified script handler function.
             </summary>
             <param name="scriptFunc">The script function that will handle the event.</param>
-            <returns>An <see cref="T:Microsoft.ClearScript.EventConnection`1"/> that represents the connection.</returns>
+            <returns>An <c><see cref="T:Microsoft.ClearScript.EventConnection`1"/></c> that represents the connection.</returns>
+        </member>
+        <member name="T:Microsoft.ClearScript.EventConnection">
+            <summary>
+            Provides the base implementation for a connection between a host event source and a script handler function.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ClearScript.EventConnection.disconnect">
+            <summary>
+            Disconnects the host event source from the script handler function.
+            </summary>
         </member>
         <member name="T:Microsoft.ClearScript.EventConnection`1">
             <summary>
@@ -481,24 +600,19 @@
             </summary>
             <typeparam name="T">The event handler delegate type.</typeparam>
         </member>
-        <member name="M:Microsoft.ClearScript.EventConnection`1.disconnect">
-            <summary>
-            Disconnects the host event source from the script handler function.
-            </summary>
-        </member>
         <member name="T:Microsoft.ClearScript.HostFunctions">
             <summary>
             Provides optional script-callable utility functions.
             </summary>
             <remarks>
-            Use <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see> to expose a
+            Use <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c> to expose a
             <c>HostFunctions</c> instance to script code. Each instance can only be exposed in one
             script engine.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.#ctor">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.HostFunctions"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.HostFunctions"/></c> instance.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.newObj">
@@ -509,13 +623,13 @@
             <remarks>
             This function is provided for script languages that do not support external
             instantiation. It creates an object that supports dynamic property addition and
-            removal. The host can manipulate it via the <see cref="T:Microsoft.ClearScript.IPropertyBag"/> interface.
+            removal. The host can manipulate it via the <c><see cref="T:Microsoft.ClearScript.IPropertyBag"/></c> interface.
             </remarks>
             <example>
             The following code creates an empty host object and adds several properties to it.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.HostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.HostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             var item = host.newObj();
             item.label = "Widget";
@@ -534,30 +648,30 @@
             <remarks>
             <para>
             This function is provided for script languages that do not support external
-            instantiation. It is overloaded with <see cref="M:Microsoft.ClearScript.HostFunctions.newObj(System.Object,System.Object[])"/> and
+            instantiation. It is overloaded with <c><see cref="M:Microsoft.ClearScript.HostFunctions.newObj(System.Object,System.Object[])"/></c> and
             selected at runtime if <typeparamref name="T"/> can be used as a type argument.
             </para>
             <para>
             For information about the mapping between host members and script-callable properties
             and methods, see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">AddHostObject</see>.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">AddHostObject</see></c>.
             </para>
             </remarks>
             <example>
-            The following code imports the <see cref="T:System.Random"/> class, creates an
+            The following code imports the <c><see cref="T:System.Random"/></c> class, creates an
             instance using the
-            <see href="https://docs.microsoft.com/en-us/dotnet/api/system.random.-ctor#System_Random__ctor_System_Int32_">Random(Int32)</see>
-            constructor, and calls the <see cref="M:System.Random.NextDouble"/> method.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            <c><see href="https://docs.microsoft.com/en-us/dotnet/api/system.random.-ctor#System_Random__ctor_System_Int32_">Random(Int32)</see></c>
+            constructor, and calls the <c><see cref="M:System.Random.NextDouble"/></c> method.
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             var RandomT = host.type("System.Random");
             var random = host.newObj(RandomT, 100);
             var value = random.NextDouble();
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.newObj(System.Object,System.Object[])">
             <summary>
@@ -570,14 +684,14 @@
             <remarks>
             <para>
             This function is provided for script languages that do not support external
-            instantiation. It is overloaded with <see cref="M:Microsoft.ClearScript.HostFunctions.newObj``1(System.Object[])"/> and selected at runtime if
+            instantiation. It is overloaded with <c><see cref="M:Microsoft.ClearScript.HostFunctions.newObj``1(System.Object[])"/></c> and selected at runtime if
             <paramref name="type"/> cannot be used as a type argument. Note that this applies
             to some host types that support instantiation, such as certain COM/ActiveX types.
             </para>
             <para>
             For information about the mapping between host members and script-callable properties
             and methods, see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">AddHostObject</see>.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">AddHostObject</see></c>.
             </para>
             </remarks>
         </member>
@@ -603,33 +717,33 @@
             <remarks>
             For information about the mapping between host members and script-callable properties
             and methods, see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">AddHostObject</see>.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">AddHostObject</see></c>.
             </remarks>
             <example>
             The following code creates a 5x3 host array of strings.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             var StringT = host.type("System.String");
             var array = host.newArr(StringT, 5, 3);
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.HostFunctions.newArr(System.Int32[])"/>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.HostFunctions.newArr(System.Int32[])"/></c>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.newArr(System.Int32[])">
             <summary>
-            Creates a host array with <see cref="T:System.Object"/> as the element type.
+            Creates a host array with <c><see cref="T:System.Object"/></c> as the element type.
             </summary>
             <param name="lengths">One or more integers representing the array dimension lengths.</param>
-            <returns>A new host array with <see cref="T:System.Object"/> as the element type.</returns>
+            <returns>A new host array with <c><see cref="T:System.Object"/></c> as the element type.</returns>
             <remarks>
             For information about the mapping between host members and script-callable properties
             and methods, see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">AddHostObject</see>.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">AddHostObject</see></c>.
             </remarks>
-            <seealso cref="M:Microsoft.ClearScript.HostFunctions.newArr``1(System.Int32[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.HostFunctions.newArr``1(System.Int32[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.newVar``1(``0)">
             <summary>
@@ -673,9 +787,9 @@
             <example>
             The following code demonstrates using a host variable to invoke a method with an
             <c>out</c> parameter.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import a dictionary type
             var StringT = host.type("System.String");
@@ -689,7 +803,7 @@
             var found = dict.TryGetValue("baz", result.out);
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.del``1(System.Object)">
             <summary>
@@ -706,9 +820,9 @@
             </remarks>
             <example>
             The following code demonstrates delegating a callback to a script function.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // create and populate an array of integers
             var EnumerableT = host.type("System.Linq.Enumerable", "System.Core");
@@ -722,8 +836,8 @@
             ArrayT.ForEach(array, host.del(CallbackT, function (value) { sum += value; }));
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.String,System.Object[])"/>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.String,System.Object[])"/></c>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.proc(System.Int32,System.Object)">
             <summary>
@@ -734,15 +848,15 @@
             <returns>A new delegate that invokes the specified script function and returns no value.</returns>
             <remarks>
             This function creates a delegate that accepts <paramref name="argCount"/> arguments and
-            returns no value. The type of all parameters is <see cref="T:System.Object"/>. Such a
+            returns no value. The type of all parameters is <c><see cref="T:System.Object"/></c>. Such a
             delegate is often useful in strongly typed contexts because of
             <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/">contravariance</see>.
             </remarks>
             <example>
             The following code demonstrates delegating a callback to a script function.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // create and populate an array of strings
             var StringT = host.type("System.String");
@@ -756,8 +870,8 @@
             ArrayT.ForEach(array, host.proc(1, function (value) { ConsoleT.WriteLine(value); }));
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
-            <seealso cref="M:Microsoft.ClearScript.HostFunctions.newArr``1(System.Int32[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
+            <c><seealso cref="M:Microsoft.ClearScript.HostFunctions.newArr``1(System.Int32[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.func``1(System.Int32,System.Object)">
             <summary>
@@ -770,15 +884,15 @@
             <remarks>
             This function creates a delegate that accepts <paramref name="argCount"/> arguments and
             returns a value of the specified type. The type of all parameters is
-            <see cref="T:System.Object"/>. Such a delegate is often useful in strongly typed contexts
+            <c><see cref="T:System.Object"/></c>. Such a delegate is often useful in strongly typed contexts
             because of
             <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/">contravariance</see>.
             </remarks>
             <example>
             The following code demonstrates delegating a callback to a script function.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // create and populate an array of strings
             var StringT = host.type("System.String");
@@ -793,9 +907,9 @@
             array = array.Select(selector).ToArray();
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.HostFunctions.func(System.Int32,System.Object)"/>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.HostFunctions.func(System.Int32,System.Object)"/></c>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.func(System.Int32,System.Object)">
             <summary>
@@ -808,79 +922,79 @@
             <para>
             This function creates a delegate that accepts <paramref name="argCount"/> arguments and
             returns the result of invoking <paramref name="scriptFunc"/>. The type of all
-            parameters and the return value is <see cref="T:System.Object"/>. Such a delegate is
+            parameters and the return value is <c><see cref="T:System.Object"/></c>. Such a delegate is
             often useful in strongly typed contexts because of
             <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/">contravariance</see>.
             </para>
             <para>
             For information about the types of result values that script code can return, see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/>.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/></c>.
             </para>
             </remarks>
-            <seealso cref="M:Microsoft.ClearScript.HostFunctions.func``1(System.Int32,System.Object)"/>
+            <c><seealso cref="M:Microsoft.ClearScript.HostFunctions.func``1(System.Int32,System.Object)"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.typeOf``1">
             <summary>
-            Gets the <see cref="T:System.Type"/> for the specified host type. This version is invoked
+            Gets the <c><see cref="T:System.Type"/></c> for the specified host type. This version is invoked
             if the specified object can be used as a type argument.
             </summary>
-            <typeparam name="T">The host type for which to get the <see cref="T:System.Type"/>.</typeparam>
-            <returns>The <see cref="T:System.Type"/> for the specified host type.</returns>
+            <typeparam name="T">The host type for which to get the <c><see cref="T:System.Type"/></c>.</typeparam>
+            <returns>The <c><see cref="T:System.Type"/></c> for the specified host type.</returns>
             <remarks>
             <para>
             This function is similar to C#'s
             <c><see href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/typeof">typeof</see></c>
-            operator. It is overloaded with <see cref="M:Microsoft.ClearScript.HostFunctions.typeOf(System.Object)"/> and selected at runtime if
+            operator. It is overloaded with <c><see cref="M:Microsoft.ClearScript.HostFunctions.typeOf(System.Object)"/></c> and selected at runtime if
             <typeparamref name="T"/> can be used as a type argument.
             </para>
             <para>
             This function throws an exception if the script engine's
-            <see cref="P:Microsoft.ClearScript.ScriptEngine.AllowReflection"/> property is set to <c>false</c>.
+            <c><see cref="P:Microsoft.ClearScript.ScriptEngine.AllowReflection"/></c> property is set to <c>false</c>.
             </para>
             </remarks>
             <example>
             The following code retrieves the assembly-qualified name of a host type.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             var StringT = host.type("System.String");
             var name = host.typeOf(StringT).AssemblyQualifiedName;
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.typeOf(System.Object)">
             <summary>
-            Gets the <see cref="T:System.Type"/> for the specified host type. This version is invoked
+            Gets the <c><see cref="T:System.Type"/></c> for the specified host type. This version is invoked
             if the specified object cannot be used as a type argument.
             </summary>
-            <param name="value">The host type for which to get the <see cref="T:System.Type"/>.</param>
-            <returns>The <see cref="T:System.Type"/> for the specified host type.</returns>
+            <param name="value">The host type for which to get the <c><see cref="T:System.Type"/></c>.</param>
+            <returns>The <c><see cref="T:System.Type"/></c> for the specified host type.</returns>
             <remarks>
             <para>
             This function is similar to C#'s
             <c><see href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/typeof">typeof</see></c>
-            operator. It is overloaded with <see cref="M:Microsoft.ClearScript.HostFunctions.typeOf``1"/> and selected at runtime if
+            operator. It is overloaded with <c><see cref="M:Microsoft.ClearScript.HostFunctions.typeOf``1"/></c> and selected at runtime if
             <paramref name="value"/> cannot be used as a type argument. Note that this applies to
             some host types; examples are static types and overloaded generic type groups.
             </para>
             <para>
             This function throws an exception if the script engine's
-            <see cref="P:Microsoft.ClearScript.ScriptEngine.AllowReflection"/> property is set to <c>false</c>.
+            <c><see cref="P:Microsoft.ClearScript.ScriptEngine.AllowReflection"/></c> property is set to <c>false</c>.
             </para>
             </remarks>
             <example>
             The following code retrieves the assembly-qualified name of a host type.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             var ConsoleT = host.type("System.Console");
             var name = host.typeOf(ConsoleT).AssemblyQualifiedName;
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.isType``1(System.Object)">
             <summary>
@@ -896,10 +1010,10 @@
             </remarks>
             <example>
             The following code defines a function that determines whether an object implements
-            <see cref="T:System.IComparable"/>.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            <c><see cref="T:System.IComparable"/></c>.
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             function isComparable(value)
             {
@@ -908,7 +1022,7 @@
             }
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.asType``1(System.Object)">
             <summary>
@@ -924,10 +1038,10 @@
             </remarks>
             <example>
             The following code defines a function that disposes an object if it implements
-            <see cref="T:System.IDisposable"/>.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            <c><see cref="T:System.IDisposable"/></c>.
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             function dispose(value)
             {
@@ -939,7 +1053,7 @@
             }
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.cast``1(System.Object)">
             <summary>
@@ -953,15 +1067,15 @@
             </remarks>
             <example>
             The following code casts a floating-point value to a 32-bit integer.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             var Int32T = host.type("System.Int32");
             var intValue = host.cast(Int32T, 12.5);
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.isTypeObj(System.Object)">
             <summary>
@@ -971,7 +1085,7 @@
             <param name="value">The object to test.</param>
             <returns><c>True</c> if <paramref name="value"/> is a host type, <c>false</c> otherwise.</returns>
             <remarks>
-            This function is overloaded with <see cref="M:Microsoft.ClearScript.HostFunctions.isTypeObj``1"/> and selected at runtime if
+            This function is overloaded with <c><see cref="M:Microsoft.ClearScript.HostFunctions.isTypeObj``1"/></c> and selected at runtime if
             <paramref name="value"/> cannot be used as a type argument. Note that this applies to
             some host types; examples are static types and overloaded generic type groups.
             </remarks>
@@ -984,7 +1098,7 @@
             <typeparam name="T">The host type (ignored).</typeparam>
             <returns><c>True</c>.</returns>
             <remarks>
-            This function is overloaded with <see cref="M:Microsoft.ClearScript.HostFunctions.isTypeObj(System.Object)"/> and selected at
+            This function is overloaded with <c><see cref="M:Microsoft.ClearScript.HostFunctions.isTypeObj(System.Object)"/></c> and selected at
             runtime if <typeparamref name="T"/> can be used as a type argument. Because type
             arguments are always host types, this method ignores its type argument and always
             returns <c>true</c>.
@@ -999,11 +1113,11 @@
             <remarks>
             Use this function to test field, property, and method return values when <c>null</c>
             result wrapping is in effect (see 
-            <see cref="F:Microsoft.ClearScript.ScriptMemberFlags.WrapNullResult"/> and
-            <see cref="P:Microsoft.ClearScript.ScriptEngine.EnableNullResultWrapping"/>).
+            <c><see cref="F:Microsoft.ClearScript.ScriptMemberFlags.WrapNullResult"/></c> and
+            <c><see cref="P:Microsoft.ClearScript.ScriptEngine.EnableNullResultWrapping"/></c>).
             </remarks>
-            <seealso cref="F:Microsoft.ClearScript.ScriptMemberFlags.WrapNullResult"/>
-            <seealso cref="P:Microsoft.ClearScript.ScriptEngine.EnableNullResultWrapping"/>
+            <c><seealso cref="F:Microsoft.ClearScript.ScriptMemberFlags.WrapNullResult"/></c>
+            <c><seealso cref="P:Microsoft.ClearScript.ScriptEngine.EnableNullResultWrapping"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.flags``1(``0[])">
             <summary>
@@ -1017,9 +1131,9 @@
             </remarks>
             <example>
             The following code demonstrates using a strongly typed flag set.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import URI types
             var UriT = host.type("System.Uri", "System");
@@ -1032,26 +1146,26 @@
             var result = uri.GetComponents(components, UriFormatT.Unescaped);
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.toSByte(System.IConvertible)">
             <summary>
-            Converts the specified value to a strongly typed <see cref="T:System.SByte"/> instance.
+            Converts the specified value to a strongly typed <c><see cref="T:System.SByte"/></c> instance.
             </summary>
             <param name="value">The value to convert.</param>
-            <returns>An object that can be passed to a parameter of type <see cref="T:System.SByte"/>.</returns>
+            <returns>An object that can be passed to a parameter of type <c><see cref="T:System.SByte"/></c>.</returns>
             <remarks>
-            This function converts <paramref name="value"/> to <see cref="T:System.SByte"/> and
+            This function converts <paramref name="value"/> to <c><see cref="T:System.SByte"/></c> and
             packages the result to retain its numeric type across the host-script boundary. It may
-            be useful for passing arguments to <see cref="T:System.SByte"/> parameters if the script
+            be useful for passing arguments to <c><see cref="T:System.SByte"/></c> parameters if the script
             engine does not support that type natively.
             </remarks>
             <example>
-            The following code adds an element of type <see cref="T:System.SByte"/> to a strongly
+            The following code adds an element of type <c><see cref="T:System.SByte"/></c> to a strongly
             typed list.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import types
             var ElementT = host.type("System.SByte");
@@ -1062,26 +1176,26 @@
             list.Add(host.toSByte(42));
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.toByte(System.IConvertible)">
             <summary>
-            Converts the specified value to a strongly typed <see cref="T:System.Byte"/> instance.
+            Converts the specified value to a strongly typed <c><see cref="T:System.Byte"/></c> instance.
             </summary>
             <param name="value">The value to convert.</param>
-            <returns>An object that can be passed to a parameter of type <see cref="T:System.Byte"/>.</returns>
+            <returns>An object that can be passed to a parameter of type <c><see cref="T:System.Byte"/></c>.</returns>
             <remarks>
-            This function converts <paramref name="value"/> to <see cref="T:System.Byte"/> and
+            This function converts <paramref name="value"/> to <c><see cref="T:System.Byte"/></c> and
             packages the result to retain its numeric type across the host-script boundary. It may
-            be useful for passing arguments to <see cref="T:System.Byte"/> parameters if the script
+            be useful for passing arguments to <c><see cref="T:System.Byte"/></c> parameters if the script
             engine does not support that type natively.
             </remarks>
             <example>
-            The following code adds an element of type <see cref="T:System.Byte"/> to a strongly
+            The following code adds an element of type <c><see cref="T:System.Byte"/></c> to a strongly
             typed list.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import types
             var ElementT = host.type("System.Byte");
@@ -1092,26 +1206,26 @@
             list.Add(host.toByte(42));
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.toInt16(System.IConvertible)">
             <summary>
-            Converts the specified value to a strongly typed <see cref="T:System.Int16"/> instance.
+            Converts the specified value to a strongly typed <c><see cref="T:System.Int16"/></c> instance.
             </summary>
             <param name="value">The value to convert.</param>
-            <returns>An object that can be passed to a parameter of type <see cref="T:System.Int16"/>.</returns>
+            <returns>An object that can be passed to a parameter of type <c><see cref="T:System.Int16"/></c>.</returns>
             <remarks>
-            This function converts <paramref name="value"/> to <see cref="T:System.Int16"/> and
+            This function converts <paramref name="value"/> to <c><see cref="T:System.Int16"/></c> and
             packages the result to retain its numeric type across the host-script boundary. It may
-            be useful for passing arguments to <see cref="T:System.Int16"/> parameters if the script
+            be useful for passing arguments to <c><see cref="T:System.Int16"/></c> parameters if the script
             engine does not support that type natively.
             </remarks>
             <example>
-            The following code adds an element of type <see cref="T:System.Int16"/> to a strongly
+            The following code adds an element of type <c><see cref="T:System.Int16"/></c> to a strongly
             typed list.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import types
             var ElementT = host.type("System.Int16");
@@ -1122,26 +1236,26 @@
             list.Add(host.toInt16(42));
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.toUInt16(System.IConvertible)">
             <summary>
-            Converts the specified value to a strongly typed <see cref="T:System.UInt16"/> instance.
+            Converts the specified value to a strongly typed <c><see cref="T:System.UInt16"/></c> instance.
             </summary>
             <param name="value">The value to convert.</param>
-            <returns>An object that can be passed to a parameter of type <see cref="T:System.UInt16"/>.</returns>
+            <returns>An object that can be passed to a parameter of type <c><see cref="T:System.UInt16"/></c>.</returns>
             <remarks>
-            This function converts <paramref name="value"/> to <see cref="T:System.UInt16"/> and
+            This function converts <paramref name="value"/> to <c><see cref="T:System.UInt16"/></c> and
             packages the result to retain its numeric type across the host-script boundary. It may
-            be useful for passing arguments to <see cref="T:System.UInt16"/> parameters if the script
+            be useful for passing arguments to <c><see cref="T:System.UInt16"/></c> parameters if the script
             engine does not support that type natively.
             </remarks>
             <example>
-            The following code adds an element of type <see cref="T:System.UInt16"/> to a strongly
+            The following code adds an element of type <c><see cref="T:System.UInt16"/></c> to a strongly
             typed list.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import types
             var ElementT = host.type("System.UInt16");
@@ -1152,26 +1266,26 @@
             list.Add(host.toUInt16(42));
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.toChar(System.IConvertible)">
             <summary>
-            Converts the specified value to a strongly typed <see cref="T:System.Char"/> instance.
+            Converts the specified value to a strongly typed <c><see cref="T:System.Char"/></c> instance.
             </summary>
             <param name="value">The value to convert.</param>
-            <returns>An object that can be passed to a parameter of type <see cref="T:System.Char"/>.</returns>
+            <returns>An object that can be passed to a parameter of type <c><see cref="T:System.Char"/></c>.</returns>
             <remarks>
-            This function converts <paramref name="value"/> to <see cref="T:System.Char"/> and
+            This function converts <paramref name="value"/> to <c><see cref="T:System.Char"/></c> and
             packages the result to retain its numeric type across the host-script boundary. It may
-            be useful for passing arguments to <see cref="T:System.Char"/> parameters if the script
+            be useful for passing arguments to <c><see cref="T:System.Char"/></c> parameters if the script
             engine does not support that type natively.
             </remarks>
             <example>
-            The following code adds an element of type <see cref="T:System.Char"/> to a strongly
+            The following code adds an element of type <c><see cref="T:System.Char"/></c> to a strongly
             typed list.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import types
             var ElementT = host.type("System.Char");
@@ -1182,26 +1296,26 @@
             list.Add(host.toChar(42));
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.toInt32(System.IConvertible)">
             <summary>
-            Converts the specified value to a strongly typed <see cref="T:System.Int32"/> instance.
+            Converts the specified value to a strongly typed <c><see cref="T:System.Int32"/></c> instance.
             </summary>
             <param name="value">The value to convert.</param>
-            <returns>An object that can be passed to a parameter of type <see cref="T:System.Int32"/>.</returns>
+            <returns>An object that can be passed to a parameter of type <c><see cref="T:System.Int32"/></c>.</returns>
             <remarks>
-            This function converts <paramref name="value"/> to <see cref="T:System.Int32"/> and
+            This function converts <paramref name="value"/> to <c><see cref="T:System.Int32"/></c> and
             packages the result to retain its numeric type across the host-script boundary. It may
-            be useful for passing arguments to <see cref="T:System.Int32"/> parameters if the script
+            be useful for passing arguments to <c><see cref="T:System.Int32"/></c> parameters if the script
             engine does not support that type natively.
             </remarks>
             <example>
-            The following code adds an element of type <see cref="T:System.Int32"/> to a strongly
+            The following code adds an element of type <c><see cref="T:System.Int32"/></c> to a strongly
             typed list.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import types
             var ElementT = host.type("System.Int32");
@@ -1212,26 +1326,26 @@
             list.Add(host.toInt32(42));
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.toUInt32(System.IConvertible)">
             <summary>
-            Converts the specified value to a strongly typed <see cref="T:System.UInt32"/> instance.
+            Converts the specified value to a strongly typed <c><see cref="T:System.UInt32"/></c> instance.
             </summary>
             <param name="value">The value to convert.</param>
-            <returns>An object that can be passed to a parameter of type <see cref="T:System.UInt32"/>.</returns>
+            <returns>An object that can be passed to a parameter of type <c><see cref="T:System.UInt32"/></c>.</returns>
             <remarks>
-            This function converts <paramref name="value"/> to <see cref="T:System.UInt32"/> and
+            This function converts <paramref name="value"/> to <c><see cref="T:System.UInt32"/></c> and
             packages the result to retain its numeric type across the host-script boundary. It may
-            be useful for passing arguments to <see cref="T:System.UInt32"/> parameters if the script
+            be useful for passing arguments to <c><see cref="T:System.UInt32"/></c> parameters if the script
             engine does not support that type natively.
             </remarks>
             <example>
-            The following code adds an element of type <see cref="T:System.UInt32"/> to a strongly
+            The following code adds an element of type <c><see cref="T:System.UInt32"/></c> to a strongly
             typed list.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import types
             var ElementT = host.type("System.UInt32");
@@ -1242,26 +1356,26 @@
             list.Add(host.toUInt32(42));
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.toInt64(System.IConvertible)">
             <summary>
-            Converts the specified value to a strongly typed <see cref="T:System.Int64"/> instance.
+            Converts the specified value to a strongly typed <c><see cref="T:System.Int64"/></c> instance.
             </summary>
             <param name="value">The value to convert.</param>
-            <returns>An object that can be passed to a parameter of type <see cref="T:System.Int64"/>.</returns>
+            <returns>An object that can be passed to a parameter of type <c><see cref="T:System.Int64"/></c>.</returns>
             <remarks>
-            This function converts <paramref name="value"/> to <see cref="T:System.Int64"/> and
+            This function converts <paramref name="value"/> to <c><see cref="T:System.Int64"/></c> and
             packages the result to retain its numeric type across the host-script boundary. It may
-            be useful for passing arguments to <see cref="T:System.Int64"/> parameters if the script
+            be useful for passing arguments to <c><see cref="T:System.Int64"/></c> parameters if the script
             engine does not support that type natively.
             </remarks>
             <example>
-            The following code adds an element of type <see cref="T:System.Int64"/> to a strongly
+            The following code adds an element of type <c><see cref="T:System.Int64"/></c> to a strongly
             typed list.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import types
             var ElementT = host.type("System.Int64");
@@ -1272,26 +1386,26 @@
             list.Add(host.toInt64(42));
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.toUInt64(System.IConvertible)">
             <summary>
-            Converts the specified value to a strongly typed <see cref="T:System.UInt64"/> instance.
+            Converts the specified value to a strongly typed <c><see cref="T:System.UInt64"/></c> instance.
             </summary>
             <param name="value">The value to convert.</param>
-            <returns>An object that can be passed to a parameter of type <see cref="T:System.UInt64"/>.</returns>
+            <returns>An object that can be passed to a parameter of type <c><see cref="T:System.UInt64"/></c>.</returns>
             <remarks>
-            This function converts <paramref name="value"/> to <see cref="T:System.UInt64"/> and
+            This function converts <paramref name="value"/> to <c><see cref="T:System.UInt64"/></c> and
             packages the result to retain its numeric type across the host-script boundary. It may
-            be useful for passing arguments to <see cref="T:System.UInt64"/> parameters if the script
+            be useful for passing arguments to <c><see cref="T:System.UInt64"/></c> parameters if the script
             engine does not support that type natively.
             </remarks>
             <example>
-            The following code adds an element of type <see cref="T:System.UInt64"/> to a strongly
+            The following code adds an element of type <c><see cref="T:System.UInt64"/></c> to a strongly
             typed list.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import types
             var ElementT = host.type("System.UInt64");
@@ -1302,26 +1416,26 @@
             list.Add(host.toUInt64(42));
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.toSingle(System.IConvertible)">
             <summary>
-            Converts the specified value to a strongly typed <see cref="T:System.Single"/> instance.
+            Converts the specified value to a strongly typed <c><see cref="T:System.Single"/></c> instance.
             </summary>
             <param name="value">The value to convert.</param>
-            <returns>An object that can be passed to a parameter of type <see cref="T:System.Single"/>.</returns>
+            <returns>An object that can be passed to a parameter of type <c><see cref="T:System.Single"/></c>.</returns>
             <remarks>
-            This function converts <paramref name="value"/> to <see cref="T:System.Single"/> and
+            This function converts <paramref name="value"/> to <c><see cref="T:System.Single"/></c> and
             packages the result to retain its numeric type across the host-script boundary. It may
-            be useful for passing arguments to <see cref="T:System.Single"/> parameters if the script
+            be useful for passing arguments to <c><see cref="T:System.Single"/></c> parameters if the script
             engine does not support that type natively.
             </remarks>
             <example>
-            The following code adds an element of type <see cref="T:System.Single"/> to a strongly
+            The following code adds an element of type <c><see cref="T:System.Single"/></c> to a strongly
             typed list.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import types
             var ElementT = host.type("System.Single");
@@ -1332,26 +1446,26 @@
             list.Add(host.toSingle(42));
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.toDouble(System.IConvertible)">
             <summary>
-            Converts the specified value to a strongly typed <see cref="T:System.Double"/> instance.
+            Converts the specified value to a strongly typed <c><see cref="T:System.Double"/></c> instance.
             </summary>
             <param name="value">The value to convert.</param>
-            <returns>An object that can be passed to a parameter of type <see cref="T:System.Double"/>.</returns>
+            <returns>An object that can be passed to a parameter of type <c><see cref="T:System.Double"/></c>.</returns>
             <remarks>
-            This function converts <paramref name="value"/> to <see cref="T:System.Double"/> and
+            This function converts <paramref name="value"/> to <c><see cref="T:System.Double"/></c> and
             packages the result to retain its numeric type across the host-script boundary. It may
-            be useful for passing arguments to <see cref="T:System.Double"/> parameters if the script
+            be useful for passing arguments to <c><see cref="T:System.Double"/></c> parameters if the script
             engine does not support that type natively.
             </remarks>
             <example>
-            The following code adds an element of type <see cref="T:System.Double"/> to a strongly
+            The following code adds an element of type <c><see cref="T:System.Double"/></c> to a strongly
             typed list.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import types
             var ElementT = host.type("System.Double");
@@ -1362,26 +1476,26 @@
             list.Add(host.toDouble(42));
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.toDecimal(System.IConvertible)">
             <summary>
-            Converts the specified value to a strongly typed <see cref="T:System.Decimal"/> instance.
+            Converts the specified value to a strongly typed <c><see cref="T:System.Decimal"/></c> instance.
             </summary>
             <param name="value">The value to convert.</param>
-            <returns>An object that can be passed to a parameter of type <see cref="T:System.Decimal"/>.</returns>
+            <returns>An object that can be passed to a parameter of type <c><see cref="T:System.Decimal"/></c>.</returns>
             <remarks>
-            This function converts <paramref name="value"/> to <see cref="T:System.Decimal"/> and
+            This function converts <paramref name="value"/> to <c><see cref="T:System.Decimal"/></c> and
             packages the result to retain its numeric type across the host-script boundary. It may
-            be useful for passing arguments to <see cref="T:System.Decimal"/> parameters if the script
+            be useful for passing arguments to <c><see cref="T:System.Decimal"/></c> parameters if the script
             engine does not support that type natively.
             </remarks>
             <example>
-            The following code adds an element of type <see cref="T:System.Decimal"/> to a strongly
+            The following code adds an element of type <c><see cref="T:System.Decimal"/></c> to a strongly
             typed list.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import types
             var ElementT = host.type("System.Decimal");
@@ -1392,11 +1506,11 @@
             list.Add(host.toDecimal(42));
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.getProperty(Microsoft.ClearScript.IPropertyBag,System.String)">
             <summary>
-            Gets the value of a property in a dynamic host object that implements <see cref="T:Microsoft.ClearScript.IPropertyBag"/>.
+            Gets the value of a property in a dynamic host object that implements <c><see cref="T:Microsoft.ClearScript.IPropertyBag"/></c>.
             </summary>
             <param name="target">The dynamic host object that contains the property to get.</param>
             <param name="name">The name of the property to get.</param>
@@ -1407,7 +1521,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.setProperty(Microsoft.ClearScript.IPropertyBag,System.String,System.Object)">
             <summary>
-            Sets a property value in a dynamic host object that implements <see cref="T:Microsoft.ClearScript.IPropertyBag"/>.
+            Sets a property value in a dynamic host object that implements <c><see cref="T:Microsoft.ClearScript.IPropertyBag"/></c>.
             </summary>
             <param name="target">The dynamic host object that contains the property to set.</param>
             <param name="name">The name of the property to set.</param>
@@ -1419,7 +1533,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.removeProperty(Microsoft.ClearScript.IPropertyBag,System.String)">
             <summary>
-            Removes a property from a dynamic host object that implements <see cref="T:Microsoft.ClearScript.IPropertyBag"/>.
+            Removes a property from a dynamic host object that implements <c><see cref="T:Microsoft.ClearScript.IPropertyBag"/></c>.
             </summary>
             <param name="target">The dynamic host object that contains the property to remove.</param>
             <param name="name">The name of the property to remove.</param>
@@ -1430,7 +1544,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.getProperty(System.Dynamic.IDynamicMetaObjectProvider,System.String)">
             <summary>
-            Gets the value of a property in a dynamic host object that implements <see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/>.
+            Gets the value of a property in a dynamic host object that implements <c><see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/></c>.
             </summary>
             <param name="target">The dynamic host object that contains the property to get.</param>
             <param name="name">The name of the property to get.</param>
@@ -1441,7 +1555,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.setProperty(System.Dynamic.IDynamicMetaObjectProvider,System.String,System.Object)">
             <summary>
-            Sets a property value in a dynamic host object that implements <see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/>.
+            Sets a property value in a dynamic host object that implements <c><see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/></c>.
             </summary>
             <param name="target">The dynamic host object that contains the property to set.</param>
             <param name="name">The name of the property to set.</param>
@@ -1453,7 +1567,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.removeProperty(System.Dynamic.IDynamicMetaObjectProvider,System.String)">
             <summary>
-            Removes a property from a dynamic host object that implements <see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/>.
+            Removes a property from a dynamic host object that implements <c><see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/></c>.
             </summary>
             <param name="target">The dynamic host object that contains the property to remove.</param>
             <param name="name">The name of the property to remove.</param>
@@ -1464,7 +1578,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.getElement(System.Dynamic.IDynamicMetaObjectProvider,System.Object[])">
             <summary>
-            Gets the value of an element in a dynamic host object that implements <see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/>.
+            Gets the value of an element in a dynamic host object that implements <c><see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/></c>.
             </summary>
             <param name="target">The dynamic host object that contains the element to get.</param>
             <param name="indices">One or more indices that identify the element to get.</param>
@@ -1475,7 +1589,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.setElement(System.Dynamic.IDynamicMetaObjectProvider,System.Object,System.Object[])">
             <summary>
-            Sets an element value in a dynamic host object that implements <see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/>.
+            Sets an element value in a dynamic host object that implements <c><see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/></c>.
             </summary>
             <param name="target">The dynamic host object that contains the element to set.</param>
             <param name="value">The new value of the element.</param>
@@ -1487,7 +1601,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.HostFunctions.removeElement(System.Dynamic.IDynamicMetaObjectProvider,System.Object[])">
             <summary>
-            Removes an element from a dynamic host object that implements <see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/>.
+            Removes an element from a dynamic host object that implements <c><see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/></c>.
             </summary>
             <param name="target">The dynamic host object that contains the element to remove.</param>
             <param name="indices">One or more indices that identify the element to remove.</param>
@@ -1503,7 +1617,7 @@
             <param name="value">The object to cast to its static type.</param>
             <returns>The specified object in its static type form, stripped of its dynamic members.</returns>
             <remarks>
-            A dynamic host object that implements <see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/> may have
+            A dynamic host object that implements <c><see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/></c> may have
             dynamic members that override members of its static type. This function can be used to
             gain access to type members overridden in this manner.
             </remarks>
@@ -1526,9 +1640,9 @@
             </remarks>
             <example>
             The following code demonstrates handling host exceptions in script code.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             // import types
             var ConsoleT = host.type("System.Console");
@@ -1553,8 +1667,8 @@
             );
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.String,System.Object[])"/>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.String,System.Object[])"/></c>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="T:Microsoft.ClearScript.ExtendedHostFunctions">
             <summary>
@@ -1564,7 +1678,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.ExtendedHostFunctions.#ctor">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> instance.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])">
@@ -1584,16 +1698,16 @@
             <para>
             For more information about the mapping between host members and script-callable
             properties and methods, see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">AddHostObject</see>.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">AddHostObject</see></c>.
             </para>
             </remarks>
             <example>
             The following code imports the
-            <see href="https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2">Dictionary</see>
+            <c><see href="https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2">Dictionary</see></c>
             generic type and uses it to create a string dictionary.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             var DictT = host.type("System.Collections.Generic.Dictionary");
             var StringT = host.type("System.String");
@@ -1625,15 +1739,15 @@
             <para>
             For more information about the mapping between host members and script-callable
             properties and methods, see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">AddHostObject</see>.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">AddHostObject</see></c>.
             </para>
             </remarks>
             <example>
-            The following code imports <see cref="T:System.Linq.Enumerable"/> and uses it to create
+            The following code imports <c><see cref="T:System.Linq.Enumerable"/></c> and uses it to create
             an array of strings.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             var EnumerableT = host.type("System.Linq.Enumerable", "System.Core");
             var Int32T = host.type("System.Int32");
@@ -1643,13 +1757,13 @@
             var array = EnumerableT.Range(0, 5).Select(selector).ToArray();
             </code>
             </example>
-            <seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.String,System.Object[])"/></c>
         </member>
         <member name="M:Microsoft.ClearScript.ExtendedHostFunctions.type(System.Type)">
             <summary>
-            Imports the host type for the specified <see cref="T:System.Type"/>.
+            Imports the host type for the specified <c><see cref="T:System.Type"/></c>.
             </summary>
-            <param name="type">The <see cref="T:System.Type"/> that specifies the host type to import.</param>
+            <param name="type">The <c><see cref="T:System.Type"/></c> that specifies the host type to import.</param>
             <returns>The imported host type.</returns>
             <remarks>
             <para>
@@ -1661,7 +1775,7 @@
             <para>
             For more information about the mapping between host members and script-callable
             properties and methods, see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">AddHostObject</see>.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">AddHostObject</see></c>.
             </para>
             </remarks>
         </member>
@@ -1689,10 +1803,10 @@
             </remarks>
             <example>
             The following code imports types from several core assemblies and uses
-            <see cref="T:System.Linq.Enumerable"/> to create an array of integers.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            <c><see cref="T:System.Linq.Enumerable"/></c> to create an array of integers.
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             var clr = host.lib("mscorlib", "System", "System.Core");
             var array = clr.System.Linq.Enumerable.Range(0, 5).ToArray();
@@ -1716,10 +1830,10 @@
             </remarks>
             <example>
             The following code imports types from several core assemblies and uses
-            <see cref="T:System.Linq.Enumerable"/> to create an array of integers.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            <c><see cref="T:System.Linq.Enumerable"/></c> to create an array of integers.
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             var clr = host.lib("mscorlib");
             host.lib(clr, "System");
@@ -1741,11 +1855,11 @@
             </remarks>
             <example>
             The following code imports the
-            <see href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/windows-scripting/x4k5wbx4(v=vs.84)">Scripting.Dictionary</see>
+            <c><see href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/windows-scripting/x4k5wbx4(v=vs.84)">Scripting.Dictionary</see></c>
             class and uses it to create and populate an instance.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             var DictT = host.comType('Scripting.Dictionary');
             var dict = host.newObj(DictT);
@@ -1768,11 +1882,11 @@
             </remarks>
             <example>
             The following code creates a 
-            <see href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/windows-scripting/6kxy1a51(v=vs.84)">Scripting.FileSystemObject</see>
+            <c><see href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/windows-scripting/6kxy1a51(v=vs.84)">Scripting.FileSystemObject</see></c>
             instance and uses it to list the drives on the local machine.
-            It assumes that an instance of <see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/> is exposed under
+            It assumes that an instance of <c><see cref="T:Microsoft.ClearScript.ExtendedHostFunctions"/></c> is exposed under
             the name "host"
-            (see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>).
+            (see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>).
             <code lang="JavaScript">
             var fso = host.newComObj('Scripting.FileSystemObject');
             var ConsoleT = host.type('System.Console');
@@ -1815,7 +1929,7 @@
         <member name="F:Microsoft.ClearScript.HostItemFlags.HideDynamicMembers">
             <summary>
             Specifies that the host resource's dynamic members are not to be exposed. This option
-            applies only to objects that implement <see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/>.
+            applies only to objects that implement <c><see cref="T:System.Dynamic.IDynamicMetaObjectProvider"/></c>.
             </summary>
         </member>
         <member name="F:Microsoft.ClearScript.HostItemFlags.DirectAccess">
@@ -1850,6 +1964,20 @@
              </para>
              </remarks>
         </member>
+        <member name="P:Microsoft.ClearScript.HostSettings.AuxiliarySearchPath">
+            <summary>
+            Gets or sets a semicolon-delimited list of directory paths to search for auxiliary files.
+            </summary>
+            <remarks>
+            This property allows the host to augment ClearScript's algorithm for locating unmanaged
+            resources such as native assemblies and related data files.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.ClearScript.HostSettings.CustomAttributeLoader">
+            <summary>
+            Gets or sets the custom attribute loader for ClearScript.
+            </summary>
+        </member>
         <member name="T:Microsoft.ClearScript.HostTypeCollection">
             <summary>
             Represents a scriptable collection of host types.
@@ -1861,7 +1989,7 @@
             "Acme.Gadgets.Button", the corresponding collection will have a property named "Acme" whose
             value is an object with a property named "Gadgets" whose value is an object with a property
             named "Button" whose value represents the <c>Acme.Gadgets.Button</c> host type. Use
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see> to expose a host
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c> to expose a host
             type collection to script code.
             </remarks>
         </member>
@@ -1961,13 +2089,14 @@
             When this attribute is applied to a struct, ClearScript exposes the same object reference
             for all instances of the struct that satisfy equality comparison, giving script code the
             ability to use native equality operators to compare the exposed objects. This behavior is
-            also enabled automatically for all enums, numeric types, <see cref="T:System.DateTime"/>,
-            <see cref="T:System.DateTimeOffset"/>, and <see cref="T:System.TimeSpan"/>.
+            also enabled automatically for all enums, <c>readonly</c> structs, numeric types,
+            <c><see cref="T:System.DateTime"/></c>, <c><see cref="T:System.DateTimeOffset"/></c>,
+            <c><see cref="T:System.TimeSpan"/></c>, and <c><see cref="T:System.Guid"></see></c>.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.ImmutableValueAttribute.#ctor">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ImmutableValueAttribute"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ImmutableValueAttribute"/></c> instance.
             </summary>
         </member>
         <member name="T:Microsoft.ClearScript.IScriptableObject">
@@ -1999,7 +2128,7 @@
         </member>
         <member name="P:Microsoft.ClearScript.IScriptEngineException.HResult">
             <summary>
-            Gets an <see href="http://en.wikipedia.org/wiki/HRESULT">HRESULT</see> error code if one is available, zero otherwise.
+            Gets an <c><see href="http://en.wikipedia.org/wiki/HRESULT">HRESULT</see></c> error code if one is available, zero otherwise.
             </summary>
         </member>
         <member name="P:Microsoft.ClearScript.IScriptEngineException.EngineName">
@@ -2025,6 +2154,11 @@
         <member name="P:Microsoft.ClearScript.IScriptEngineException.ScriptException">
             <summary>
             Gets the script exception that caused the current exception to be thrown, or <c>null</c> if one was not specified.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ClearScript.IScriptEngineException.ScriptExceptionAsObject">
+            <summary>
+            Gets the script exception that caused the current exception to be thrown, or <c>null</c> if one was not specified, without engaging the dynamic infrastructure.
             </summary>
         </member>
         <member name="P:Microsoft.ClearScript.IScriptEngineException.InnerException">
@@ -2053,7 +2187,7 @@
         <member name="T:Microsoft.ClearScript.JavaScript.IArrayBuffer">
             <summary>
             Represents a JavaScript
-            <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</see>.
+            <c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</see></c>.
             </summary>
         </member>
         <member name="P:Microsoft.ClearScript.JavaScript.IArrayBuffer.Size">
@@ -2087,10 +2221,34 @@
             <param name="offset">The offset within the <c>ArrayBuffer</c> at which to store the first copied byte.</param>
             <returns>The number of bytes copied.</returns>
         </member>
+        <member name="M:Microsoft.ClearScript.JavaScript.IArrayBuffer.InvokeWithDirectAccess(System.Action{System.IntPtr})">
+            <summary>
+            Invokes a delegate that returns no value, giving it direct access to the <c>ArrayBuffer</c>'s contents.
+            </summary>
+            <param name="action">The delegate to invoke.</param>
+            <remarks>
+            This method invokes the specified delegate, passing in the memory address of the
+            <c>ArrayBuffer</c>'s contents. This memory address is valid only while the delegate is
+            executing. The delegate must not access memory outside the <c>ArrayBuffer</c>'s range.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.ClearScript.JavaScript.IArrayBuffer.InvokeWithDirectAccess``1(System.Func{System.IntPtr,``0})">
+            <summary>
+            Invokes a delegate that returns a value, giving it direct access to the <c>ArrayBuffer</c>'s contents.
+            </summary>
+            <typeparam name="T">The delegate's return type.</typeparam>
+            <param name="func">The delegate to invoke.</param>
+            <returns>The delegate's return value.</returns>
+            <remarks>
+            This method invokes the specified delegate, passing in the memory address of the
+            <c>ArrayBuffer</c>'s contents. This memory address is valid only while the delegate is
+            executing. The delegate must not access memory outside the <c>ArrayBuffer</c>'s range.
+            </remarks>
+        </member>
         <member name="T:Microsoft.ClearScript.JavaScript.IArrayBufferView">
             <summary>
             Defines properties and methods common to all
-            <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</see>
+            <c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</see></c>
             views.
             </summary>
         </member>
@@ -2135,10 +2293,34 @@
             <param name="offset">The offset within the view at which to store the first copied byte.</param>
             <returns>The number of bytes copied.</returns>
         </member>
+        <member name="M:Microsoft.ClearScript.JavaScript.IArrayBufferView.InvokeWithDirectAccess(System.Action{System.IntPtr})">
+            <summary>
+            Invokes a delegate that returns no value, giving it direct access to the view's contents.
+            </summary>
+            <param name="action">The delegate to invoke.</param>
+            <remarks>
+            This method invokes the specified delegate, passing in the memory address of the view's
+            contents. This memory address is valid only while the delegate is executing. The
+            delegate must not access memory outside the view's range.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.ClearScript.JavaScript.IArrayBufferView.InvokeWithDirectAccess``1(System.Func{System.IntPtr,``0})">
+            <summary>
+            Invokes a delegate that returns a value, giving it direct access to the view's contents.
+            </summary>
+            <typeparam name="T">The delegate's return type.</typeparam>
+            <param name="func">The delegate to invoke.</param>
+            <returns>The delegate's return value.</returns>
+            <remarks>
+            This method invokes the specified delegate, passing in the memory address of the view's
+            contents. This memory address is valid only while the delegate is executing. The
+            delegate must not access memory outside the view's range.
+            </remarks>
+        </member>
         <member name="T:Microsoft.ClearScript.JavaScript.IDataView">
             <summary>
             Represents a JavaScript
-            <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView">DataView</see>.
+            <c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView">DataView</see></c>.
             </summary>
         </member>
         <member name="T:Microsoft.ClearScript.JavaScript.ITypedArray">
@@ -2168,39 +2350,47 @@
                     <term>Interface(s)&#xA0;(C#)</term>
                 </listheader>
                 <item>
-                    <term><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array">Uint8Array</see></term>
+                    <term><c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array">Uint8Array</see></c></term>
                     <term><c>ITypedArray&#x3C;byte&#x3E;</c></term>
                 </item>
                 <item>
-                    <term><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray">Uint8ClampedArray</see></term>
+                    <term><c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray">Uint8ClampedArray</see></c></term>
                     <term><c>ITypedArray&#x3C;byte&#x3E;</c></term>
                 </item>
                 <item>
-                    <term><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array">Int8Array</see></term>
+                    <term><c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array">Int8Array</see></c></term>
                     <term><c>ITypedArray&#x3C;sbyte&#x3E;</c></term>
                 </item>
                 <item>
-                    <term><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array">Uint16Array</see></term>
+                    <term><c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array">Uint16Array</see></c></term>
                     <term><c>ITypedArray&#x3C;ushort&#x3E;</c> and <c>ITypedArray&#x3C;char&#x3E;</c></term>
                 </item>
                 <item>
-                    <term><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array">Int16Array</see></term>
+                    <term><c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array">Int16Array</see></c></term>
                     <term><c>ITypedArray&#x3C;short&#x3E;</c></term>
                 </item>
                 <item>
-                    <term><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array">Uint32Array</see></term>
+                    <term><c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array">Uint32Array</see></c></term>
                     <term><c>ITypedArray&#x3C;uint&#x3E;</c></term>
                 </item>
                 <item>
-                    <term><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array">Int32Array</see></term>
+                    <term><c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array">Int32Array</see></c></term>
                     <term><c>ITypedArray&#x3C;int&#x3E;</c></term>
                 </item>
                 <item>
-                    <term><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array">Float32Array</see></term>
+                    <term><c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigUint64Array">BigUint64Array</see></c></term>
+                    <term><c>ITypedArray&#x3C;ulong&#x3E;</c></term>
+                </item>
+                <item>
+                    <term><c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt64Array">BigInt64Array</see></c></term>
+                    <term><c>ITypedArray&#x3C;long&#x3E;</c></term>
+                </item>
+                <item>
+                    <term><c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array">Float32Array</see></c></term>
                     <term><c>ITypedArray&#x3C;float&#x3E;</c></term>
                 </item>
                 <item>
-                    <term><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array">Float64Array</see></term>
+                    <term><c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array">Float64Array</see></c></term>
                     <term><c>ITypedArray&#x3C;double&#x3E;</c></term>
                 </item>
             </list>
@@ -2240,28 +2430,28 @@
         </member>
         <member name="M:Microsoft.ClearScript.JavaScript.JavaScriptExtensions.ToPromise``1(System.Threading.Tasks.Task{``0})">
             <summary>
-            Converts a <see cref="T:System.Threading.Tasks.Task`1"/> instance to a
+            Converts a <c><see cref="T:System.Threading.Tasks.Task`1"/></c> instance to a
             <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promise</see>
             for use with script code currently running on the calling thread.
             </summary>
-            <typeparam name="TResult">The task's result type.</typeparam>
+            <typeparam name="T">The task's result type.</typeparam>
             <param name="task">The task to convert to a promise.</param>
             <returns>A promise that represents the task's asynchronous operation.</returns>
         </member>
         <member name="M:Microsoft.ClearScript.JavaScript.JavaScriptExtensions.ToPromise``1(System.Threading.Tasks.Task{``0},Microsoft.ClearScript.ScriptEngine)">
             <summary>
-            Converts a <see cref="T:System.Threading.Tasks.Task`1"/> instance to a
+            Converts a <c><see cref="T:System.Threading.Tasks.Task`1"/></c> instance to a
             <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promise</see>
             for use with script code running in the specified script engine.
             </summary>
-            <typeparam name="TResult">The task's result type.</typeparam>
+            <typeparam name="T">The task's result type.</typeparam>
             <param name="task">The task to convert to a promise.</param>
             <param name="engine">The script engine in which the promise will be used.</param>
             <returns>A promise that represents the task's asynchronous operation.</returns>
         </member>
         <member name="M:Microsoft.ClearScript.JavaScript.JavaScriptExtensions.ToPromise(System.Threading.Tasks.Task)">
             <summary>
-            Converts a <see cref="T:System.Threading.Tasks.Task"/> instance to a
+            Converts a <c><see cref="T:System.Threading.Tasks.Task"/></c> instance to a
             <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promise</see>
             for use with script code currently running on the calling thread.
             </summary>
@@ -2270,7 +2460,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.JavaScript.JavaScriptExtensions.ToPromise(System.Threading.Tasks.Task,Microsoft.ClearScript.ScriptEngine)">
             <summary>
-            Converts a <see cref="T:System.Threading.Tasks.Task"/> instance to a
+            Converts a <c><see cref="T:System.Threading.Tasks.Task"/></c> instance to a
             <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promise</see>
             for use with script code running in the specified script engine.
             </summary>
@@ -2282,7 +2472,7 @@
             <summary>
             Converts a
             <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promise</see>
-            to a <see cref="T:System.Threading.Tasks.Task`1"/> instance.
+            to a <c><see cref="T:System.Threading.Tasks.Task`1"/></c> instance.
             </summary>
             <param name="promise">The promise to convert to a task.</param>
             <returns>A task that represents the promise's asynchronous operation.</returns>
@@ -2308,8 +2498,8 @@
             </summary>
             <remarks>
             This attribute is applicable to classes, enums, interfaces, structs, and assemblies. Use
-            <see cref="T:Microsoft.ClearScript.ScriptUsageAttribute"/>, <see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/>, or
-            <see cref="T:Microsoft.ClearScript.NoScriptAccessAttribute"/> to override it for individual type members. Note that
+            <c><see cref="T:Microsoft.ClearScript.ScriptUsageAttribute"/></c>, <c><see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/></c>, or
+            <c><see cref="T:Microsoft.ClearScript.NoScriptAccessAttribute"/></c> to override it for individual type members. Note that
             it has no effect on the method binding algorithm. If a script-based call is bound to a
             method that is blocked by this attribute, it will be rejected even if an overload exists
             that could receive the call.
@@ -2317,7 +2507,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.NoDefaultScriptAccessAttribute.#ctor">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.NoDefaultScriptAccessAttribute"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.NoDefaultScriptAccessAttribute"/></c> instance.
             </summary>
         </member>
         <member name="T:Microsoft.ClearScript.NoScriptAccessAttribute">
@@ -2333,7 +2523,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.NoScriptAccessAttribute.#ctor">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.NoScriptAccessAttribute"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.NoScriptAccessAttribute"/></c> instance.
             </summary>
         </member>
         <member name="T:Microsoft.ClearScript.IPropertyBag">
@@ -2342,7 +2532,7 @@
             </summary>
             <remarks>
             If an object that implements this interface is added to a script engine (see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see>), script code
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,System.Object)">AddHostObject</see></c>), script code
             will be able to access the properties stored in the collection as if they were members of
             the object itself, using the script language's native syntax for member access. No
             other members of the object will be accessible. This interface also allows objects to
@@ -2351,29 +2541,47 @@
         </member>
         <member name="T:Microsoft.ClearScript.PropertyBag">
             <summary>
-            Provides a default <see cref="T:Microsoft.ClearScript.IPropertyBag"/> implementation.
+            Provides a default <c><see cref="T:Microsoft.ClearScript.IPropertyBag"/></c> implementation.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.PropertyBag.#ctor">
             <summary>
-            Initializes a new writable <see cref="T:Microsoft.ClearScript.PropertyBag"/>.
+            Initializes a new writable <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c> with the default property name comparer.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.PropertyBag.#ctor(System.Boolean)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.PropertyBag"/>.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c> with the default property name comparer.
             </summary>
-            <param name="isReadOnly"><c>True</c> to make the <see cref="T:Microsoft.ClearScript.PropertyBag"/> read-only, <c>false</c> to make it writable.</param>
+            <param name="isReadOnly"><c>True</c> to make the <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c> read-only, <c>false</c> to make it writable.</param>
             <remarks>
-            The host can modify a read-only <see cref="T:Microsoft.ClearScript.PropertyBag"/> by calling
-            <see cref="M:Microsoft.ClearScript.PropertyBag.SetPropertyNoCheck(System.String,System.Object)">SetPropertyNoCheck</see>,
-            <see cref="M:Microsoft.ClearScript.PropertyBag.RemovePropertyNoCheck(System.String)">RemovePropertyNoCheck</see>, or
-            <see cref="M:Microsoft.ClearScript.PropertyBag.ClearNoCheck">ClearNoCheck</see>.
+            The host can modify a read-only <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c> by calling
+            <c><see cref="M:Microsoft.ClearScript.PropertyBag.SetPropertyNoCheck(System.String,System.Object)">SetPropertyNoCheck</see></c>,
+            <c><see cref="M:Microsoft.ClearScript.PropertyBag.RemovePropertyNoCheck(System.String)">RemovePropertyNoCheck</see></c>, or
+            <c><see cref="M:Microsoft.ClearScript.PropertyBag.ClearNoCheck">ClearNoCheck</see></c>.
             </remarks>
+        </member>
+        <member name="M:Microsoft.ClearScript.PropertyBag.#ctor(System.Collections.Generic.IEqualityComparer{System.String})">
+            <summary>
+            Initializes a new writable <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c>.
+            </summary>
+            <param name="comparer">The comparer to use for property names, or <c>null</c> to use the default string comparer.</param>
+        </member>
+        <member name="M:Microsoft.ClearScript.PropertyBag.#ctor(System.Boolean,System.Collections.Generic.IEqualityComparer{System.String})">
+            <summary>
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c>.
+            </summary>
+            <param name="isReadOnly"><c>True</c> to make the <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c> read-only, <c>false</c> to make it writable.</param>
+            <param name="comparer">The comparer to use for property names, or <c>null</c> to use the default string comparer.</param>
+        </member>
+        <member name="P:Microsoft.ClearScript.PropertyBag.Comparer">
+            <summary>
+            Gets the property name comparer for the <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c>.
+            </summary>
         </member>
         <member name="M:Microsoft.ClearScript.PropertyBag.SetPropertyNoCheck(System.String,System.Object)">
             <summary>
-            Sets a property value without checking whether the <see cref="T:Microsoft.ClearScript.PropertyBag"/> is read-only.
+            Sets a property value without checking whether the <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c> is read-only.
             </summary>
             <param name="name">The name of the property to set.</param>
             <param name="value">The property value.</param>
@@ -2383,7 +2591,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.PropertyBag.RemovePropertyNoCheck(System.String)">
             <summary>
-            Removes a property without checking whether the <see cref="T:Microsoft.ClearScript.PropertyBag"/> is read-only.
+            Removes a property without checking whether the <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c> is read-only.
             </summary>
             <param name="name">The name of the property to remove.</param>
             <returns><c>True</c> if the property was found and removed, <c>false</c> otherwise.</returns>
@@ -2393,7 +2601,7 @@
         </member>
         <member name="M:Microsoft.ClearScript.PropertyBag.ClearNoCheck">
             <summary>
-            Removes all properties without checking whether the <see cref="T:Microsoft.ClearScript.PropertyBag"/> is read-only.
+            Removes all properties without checking whether the <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c> is read-only.
             </summary>
             <remarks>
             This operation is never exposed to script code.
@@ -2401,28 +2609,28 @@
         </member>
         <member name="M:Microsoft.ClearScript.PropertyBag.ContainsKey(System.String)">
             <summary>
-            Determines whether the <see cref="T:Microsoft.ClearScript.PropertyBag"/> contains a property with the specified name.
+            Determines whether the <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c> contains a property with the specified name.
             </summary>
             <param name="key">The name of the property to locate.</param>
-            <returns><c>True</c> if the <see cref="T:Microsoft.ClearScript.PropertyBag"/> contains a property with the specified name, <c>false</c> otherwise.</returns>
+            <returns><c>True</c> if the <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c> contains a property with the specified name, <c>false</c> otherwise.</returns>
         </member>
         <member name="M:Microsoft.ClearScript.PropertyBag.Add(System.String,System.Object)">
             <summary>
-            Adds a property to the <see cref="T:Microsoft.ClearScript.PropertyBag"/>.
+            Adds a property to the <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c>.
             </summary>
             <param name="key">The name of the property to add.</param>
             <param name="value">The property value.</param>
         </member>
         <member name="M:Microsoft.ClearScript.PropertyBag.Remove(System.String)">
             <summary>
-            Removes a property from the <see cref="T:Microsoft.ClearScript.PropertyBag"/>.
+            Removes a property from the <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c>.
             </summary>
             <param name="key">The name of the property to remove.</param>
             <returns><c>True</c> if the property was successfully found and removed, <c>false</c> otherwise.</returns>
         </member>
         <member name="M:Microsoft.ClearScript.PropertyBag.TryGetValue(System.String,System.Object@)">
             <summary>
-            Looks up a property value in the <see cref="T:Microsoft.ClearScript.PropertyBag"/>.
+            Looks up a property value in the <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c>.
             </summary>
             <param name="key">The name of the property to locate.</param>
             <param name="value">The property value if the property was found, <c>null</c> otherwise.</param>
@@ -2430,19 +2638,19 @@
         </member>
         <member name="P:Microsoft.ClearScript.PropertyBag.Item(System.String)">
             <summary>
-            Gets or sets a property value in the <see cref="T:Microsoft.ClearScript.PropertyBag"/>.
+            Gets or sets a property value in the <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c>.
             </summary>
             <param name="key">The name of the property to get or set.</param>
             <returns>The property value.</returns>
         </member>
         <member name="P:Microsoft.ClearScript.PropertyBag.Keys">
             <summary>
-            Gets a collection of property names from the <see cref="T:Microsoft.ClearScript.PropertyBag"/>.
+            Gets a collection of property names from the <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c>.
             </summary>
         </member>
         <member name="P:Microsoft.ClearScript.PropertyBag.Values">
             <summary>
-            Gets a collection of property values from the <see cref="T:Microsoft.ClearScript.PropertyBag"/>.
+            Gets a collection of property values from the <c><see cref="T:Microsoft.ClearScript.PropertyBag"/></c>.
             </summary>
         </member>
         <member name="E:Microsoft.ClearScript.PropertyBag.PropertyChanged">
@@ -2530,7 +2738,7 @@
             Gets or sets the default script access setting for all members of exposed objects.
             </summary>
             <remarks>
-            Use <see cref="T:Microsoft.ClearScript.DefaultScriptUsageAttribute"/>, <see cref="T:Microsoft.ClearScript.ScriptUsageAttribute"/>, or
+            Use <c><see cref="T:Microsoft.ClearScript.DefaultScriptUsageAttribute"/></c>, <c><see cref="T:Microsoft.ClearScript.ScriptUsageAttribute"/></c>, or
             their subclasses to override this property for individual types and members. Note that
             this property has no effect on the method binding algorithm. If a script-based call is
             bound to a method that is blocked by this property, it will be rejected even if an
@@ -2543,10 +2751,10 @@
             </summary>
             <remarks>
             Anonymous types are
-            <see href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/internal">internal</see>
+            <c><see href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/internal">internal</see></c>
             and therefore accessible only within the same assembly, but ClearScript 5.5.3 and
             earlier permitted access to the public properties of an object even if its type was
-            internal. Newer versions strictly enforce <see cref="P:Microsoft.ClearScript.ScriptEngine.AccessContext"/>, but because
+            internal. Newer versions strictly enforce <c><see cref="P:Microsoft.ClearScript.ScriptEngine.AccessContext"/></c>, but because
             anonymous types are particularly useful for scripting, ClearScript by default continues
             to expose their properties to external contexts. To override this behavior and enable
             normal access restrictions for anonymous types, set this property to <c>true</c>.
@@ -2555,6 +2763,11 @@
         <member name="P:Microsoft.ClearScript.ScriptEngine.ExposeHostObjectStaticMembers">
             <summary>
             Controls whether host objects provide access to the static members of their exposed types to script code.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ClearScript.ScriptEngine.DisableExtensionMethods">
+            <summary>
+            Enables or disables extension method support.
             </summary>
         </member>
         <member name="P:Microsoft.ClearScript.ScriptEngine.FormatCode">
@@ -2575,10 +2788,11 @@
             <remarks>
             When this property is set to <c>true</c>, script code running in the current script
             engine is permitted to use reflection. This affects
-            <see cref="M:System.Object.GetType">Object.GetType()</see>,
-            <see cref="M:System.Exception.GetType">Exception.GetType()</see>,
-            <see cref="P:System.Delegate.Method">Delegate.Method</see>,
-            <see cref="M:Microsoft.ClearScript.HostFunctions.typeOf(System.Object)"/> and <see cref="M:Microsoft.ClearScript.HostFunctions.typeOf``1"/>.
+            <c><see cref="M:System.Object.GetType">Object.GetType()</see></c>,
+            <c><see cref="M:System.Exception.GetType">Exception.GetType()</see></c>,
+            <c><see cref="P:System.Exception.TargetSite">Exception.TargetSite</see></c>,
+            <c><see cref="P:System.Delegate.Method">Delegate.Method</see></c>,
+            <c><see cref="M:Microsoft.ClearScript.HostFunctions.typeOf(System.Object)"/></c> and <c><see cref="M:Microsoft.ClearScript.HostFunctions.typeOf``1"/></c>.
             By default, any attempt to invoke these members from script code results in an
             exception.
             </remarks>
@@ -2593,7 +2807,7 @@
             are restricted to their declared types. The default behavior is a general requirement
             for correct method binding, so setting this property to <c>true</c> is not recommended.
             </remarks>
-            <seealso cref="F:Microsoft.ClearScript.ScriptMemberFlags.ExposeRuntimeType"/>
+            <c><seealso cref="F:Microsoft.ClearScript.ScriptMemberFlags.ExposeRuntimeType"/></c>
         </member>
         <member name="P:Microsoft.ClearScript.ScriptEngine.DisableListIndexTypeRestriction">
             <summary>
@@ -2605,7 +2819,7 @@
             set this property to <c>true</c> to restore the exemption if you have older script code
             that depends on it.
             </remarks>
-            <seealso cref="P:Microsoft.ClearScript.ScriptEngine.DisableTypeRestriction"/>
+            <c><seealso cref="P:Microsoft.ClearScript.ScriptEngine.DisableTypeRestriction"/></c>
         </member>
         <member name="P:Microsoft.ClearScript.ScriptEngine.EnableNullResultWrapping">
             <summary>
@@ -2618,21 +2832,50 @@
             <c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</see></c>,
             VBScript's
             <c><see href="https://docs.microsoft.com/en-us/previous-versions//f8tbc79x(v=vs.85)">Nothing</see></c>,
-            and other similar values. Instead, use <see cref="M:Microsoft.ClearScript.HostFunctions.isNull(System.Object)"/> or
-            <see cref="M:System.Object.Equals(System.Object,System.Object)"/> to perform such a comparison.
+            and other similar values. Instead, use <c><see cref="M:Microsoft.ClearScript.HostFunctions.isNull(System.Object)"/></c> or
+            <c><see cref="M:System.Object.Equals(System.Object,System.Object)"/></c> to perform such a comparison.
             </remarks>
-            <seealso cref="F:Microsoft.ClearScript.ScriptMemberFlags.WrapNullResult"/>
-            <seealso cref="M:Microsoft.ClearScript.HostFunctions.isNull(System.Object)"/>
+            <c><seealso cref="F:Microsoft.ClearScript.ScriptMemberFlags.WrapNullResult"/></c>
+            <c><seealso cref="M:Microsoft.ClearScript.HostFunctions.isNull(System.Object)"/></c>
+        </member>
+        <member name="P:Microsoft.ClearScript.ScriptEngine.DisableFloatNarrowing">
+            <summary>
+            Enables or disables floating point narrowing.
+            </summary>
+            <remarks>
+            When this property is set to <c>true</c>, no attempt is made to convert floating-point
+            values imported from the script engine to the narrowest equivalent .NET representation.
+            The default behavior is more likely to result in successful method binding in specific
+            scenarios, so setting this property to <c>true</c> is not recommended.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.ClearScript.ScriptEngine.DisableDynamicBinding">
+            <summary>
+            Enables or disables dynamic method binding.
+            </summary>
+            <remarks>
+            When this property is set to <c>true</c>, the script engine bypasses the default method
+            binding algorithm and uses reflection-based method binding instead. This approach
+            abandons support for generic type inference and other features, but it avoids engaging
+            the dynamic infrastructure.
+            </remarks>
+            <seealso cref="P:Microsoft.ClearScript.ScriptEngine.UseReflectionBindFallback"/>
         </member>
         <member name="P:Microsoft.ClearScript.ScriptEngine.UseReflectionBindFallback">
             <summary>
             Enables or disables the use of reflection-based method binding as a fallback.
             </summary>
             <remarks>
+            <para>
             When this property is set to <c>true</c>, the script engine attempts to use
             reflection-based method binding when the default method binding algorithm fails. This
             approach reduces type safety, but it may be useful for running legacy scripts that rely
             on the specific behavior of reflection-based method binding.
+            </para>
+            <para>
+            This property has no effect when <see cref="P:Microsoft.ClearScript.ScriptEngine.DisableDynamicBinding"/> is set to
+            <c>true</c>.
+            </para>
             </remarks>
         </member>
         <member name="P:Microsoft.ClearScript.ScriptEngine.EnableAutoHostVariables">
@@ -2644,7 +2887,7 @@
             arguments to script functions and delegates with host variables, allowing script code
             to simulate output arguments if the script language does not support them natively.
             </remarks>
-            <seealso cref="M:Microsoft.ClearScript.HostFunctions.newVar``1(``0)"/>
+            <c><seealso cref="M:Microsoft.ClearScript.HostFunctions.newVar``1(``0)"/></c>
         </member>
         <member name="P:Microsoft.ClearScript.ScriptEngine.UndefinedImportValue">
             <summary>
@@ -2654,7 +2897,41 @@
             Some script languages support one or more special non-<c>null</c> values that represent
             nonexistent, missing, unknown, or undefined data. When such a value is marshaled to the
             host, the script engine maps it to the value of this property. The default value is
-            <see cref="F:Microsoft.ClearScript.Undefined.Value"/>.
+            <c><see cref="F:Microsoft.ClearScript.Undefined.Value">Undefined.Value</see></c>.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.ClearScript.ScriptEngine.NullExportValue">
+            <summary>
+            Gets or sets the engine's null export value.
+            </summary>
+            <remarks>
+            <para>
+            When a null object reference is marshaled to script code, the script engine maps it to
+            the value of this property. The default value is simply <c>null</c>, which corresponds
+            to <c>null</c> or its closest equivalent in the script language. Other useful
+            possibilities include
+            <c><see cref="F:Microsoft.ClearScript.Undefined.Value">Undefined.Value</see></c> and
+            <c><see href="https://microsoft.github.io/ClearScript/Reference/html/F_Microsoft_ClearScript_Windows_Nothing_Value.htm">Nothing.Value</see></c>.
+            </para>
+            <para>
+            Note that <see cref="F:Microsoft.ClearScript.ScriptMemberFlags.WrapNullResult"/>,
+            <see cref="P:Microsoft.ClearScript.ScriptEngine.EnableNullResultWrapping"/>, and
+            <see href="https://microsoft.github.io/ClearScript/Reference/html/T_Microsoft_ClearScript_Windows_WindowsScriptEngineFlags.htm">MarshalNullAsDispatch</see>
+            all take precedence over this property.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.ClearScript.ScriptEngine.VoidResultValue">
+            <summary>
+            Gets or sets the engine's void result export value.
+            </summary>
+            <remarks>
+            Some script languages expect every subroutine call to return a value. When script code
+            written in such a language invokes a host method that explicitly returns no value (such
+            as a C#
+            <c><see href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/void">void</see></c>
+            method), the script engine returns the value of this property as a dummy result. The
+            default value is <c><see cref="F:Microsoft.ClearScript.VoidResult.Value">VoidResult.Value</see></c>.
             </remarks>
         </member>
         <member name="P:Microsoft.ClearScript.ScriptEngine.ContinuationCallback">
@@ -2669,12 +2946,23 @@
         </member>
         <member name="P:Microsoft.ClearScript.ScriptEngine.Script">
             <summary>
-            Allows the host to access script resources directly.
+            Allows the host to access script resources dynamically.
             </summary>
             <remarks>
             The value of this property is an object that is bound to the script engine's root
             namespace. It dynamically supports properties and methods that correspond to global
             script objects and functions.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.ClearScript.ScriptEngine.Global">
+            <summary>
+            Allows the host to access script resources.
+            </summary>
+            <remarks>
+            The value of this property is an object that is bound to the script engine's root
+            namespace. It allows you to access global script resources via the
+            <c><see cref="T:Microsoft.ClearScript.ScriptObject"/></c> class interface. Doing so is likely to perform better than
+            dynamic access via <c><see cref="P:Microsoft.ClearScript.ScriptEngine.Script"/></c>.
             </remarks>
         </member>
         <member name="P:Microsoft.ClearScript.ScriptEngine.DocumentSettings">
@@ -2690,7 +2978,7 @@
             <param name="target">The object to expose.</param>
             <remarks>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)">
@@ -2718,7 +3006,7 @@
                     <term>N/A</term>
                     <description>
                     To invoke a constructor from script code, call
-                    <see cref="M:Microsoft.ClearScript.HostFunctions.newObj``1(System.Object[])">HostFunctions.newObj(T)</see>.
+                    <c><see cref="M:Microsoft.ClearScript.HostFunctions.newObj``1(System.Object[])">HostFunctions.newObj(T)</see></c>.
                     </description>
                 </item>
                 <item>
@@ -2759,13 +3047,13 @@
                     <term><b>Property</b></term>
                     <description>
                     Indexers appear as properties named "Item" that accept one or more index values
-                    as arguments. In addition, objects that implement <see cref="T:System.Collections.IList"/> expose
+                    as arguments. In addition, objects that implement <c><see cref="T:System.Collections.IList"/></c> expose
                     properties with numeric names that match their valid indices. This includes
                     one-dimensional host arrays and other collections. Multidimensional host arrays
                     do not expose functional indexers; you must use
-                    <see href="https://docs.microsoft.com/en-us/dotnet/api/system.array.getvalue">Array.GetValue</see>
+                    <c><see href="https://docs.microsoft.com/en-us/dotnet/api/system.array.getvalue">Array.GetValue</see></c>
                     and
-                    <see href="https://docs.microsoft.com/en-us/dotnet/api/system.array.setvalue">Array.SetValue</see>
+                    <c><see href="https://docs.microsoft.com/en-us/dotnet/api/system.array.setvalue">Array.SetValue</see></c>
                     instead.
                     </description>
                 </item>
@@ -2773,7 +3061,7 @@
                     <term><b>Event</b></term>
                     <term><b>Property</b></term>
                     <description>
-                    Events are exposed as read-only properties of type <see cref="T:Microsoft.ClearScript.EventSource`1"/>.
+                    Events are exposed as read-only properties of type <c><see cref="T:Microsoft.ClearScript.EventSource`1"/></c>.
                     </description>
                 </item>
             </list>
@@ -2794,7 +3082,7 @@
             </para>
             <para>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -2813,7 +3101,7 @@
             </para>
             <para>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -2831,7 +3119,7 @@
             </para>
             <para>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -2850,7 +3138,7 @@
             </para>
             <para>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -2869,7 +3157,7 @@
             </para>
             <para>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -2889,7 +3177,7 @@
             </para>
             <para>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -2902,7 +3190,7 @@
             <param name="clsid">The class identifier (CLSID) of the registered class to instantiate.</param>
             <remarks>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptEngine.AddCOMObject(System.String,System.Guid,System.String)">
@@ -2915,7 +3203,7 @@
             <param name="serverName">The name of the server on which to create the object.</param>
             <remarks>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptEngine.AddCOMObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Guid)">
@@ -2928,7 +3216,7 @@
             <param name="clsid">The class identifier (CLSID) of the registered class to instantiate.</param>
             <remarks>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptEngine.AddCOMObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Guid,System.String)">
@@ -2942,7 +3230,7 @@
             <param name="serverName">The name of the server on which to create the object.</param>
             <remarks>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptEngine.AddHostType(System.Type)">
@@ -2963,7 +3251,7 @@
             </para>
             <para>
             For more information about the mapping between host members and script-callable
-            properties and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            properties and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -2986,7 +3274,7 @@
             </para>
             <para>
             For more information about the mapping between host members and script-callable
-            properties and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            properties and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3005,7 +3293,7 @@
             </para>
             <para>
             For more information about the mapping between host members and script-callable
-            properties and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            properties and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3025,7 +3313,7 @@
             </para>
             <para>
             For more information about the mapping between host members and script-callable
-            properties and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            properties and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3045,7 +3333,7 @@
             </para>
             <para>
             For more information about the mapping between host members and script-callable
-            properties and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            properties and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3066,7 +3354,7 @@
             </para>
             <para>
             For more information about the mapping between host members and script-callable
-            properties and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            properties and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3087,7 +3375,7 @@
             </para>
             <para>
             For more information about the mapping between host members and script-callable
-            properties and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            properties and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3110,7 +3398,29 @@
             </para>
             <para>
             For more information about the mapping between host members and script-callable
-            properties and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            properties and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.ClearScript.ScriptEngine.AddHostTypes(System.Type[])">
+            <summary>
+            Exposes host types to script code.
+            </summary>
+            <param name="types">The types to expose.</param>
+            <remarks>
+            <para>
+            This method uses each specified type's name for the new global script item that will
+            represent it.
+            </para>
+            <para>
+            Host types are exposed to script code in the form of objects whose properties and
+            methods are bound to the type's static members and nested types. If the type has
+            generic parameters, the corresponding object will be invocable with type arguments to
+            yield a specific type.
+            </para>
+            <para>
+            For more information about the mapping between host members and script-callable
+            properties and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3128,7 +3438,7 @@
             </para>
             <para>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3147,7 +3457,7 @@
             </para>
             <para>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3166,7 +3476,7 @@
             </para>
             <para>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3186,7 +3496,7 @@
             </para>
             <para>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3199,7 +3509,7 @@
             <param name="clsid">The class identifier (CLSID) of the registered class to import.</param>
             <remarks>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptEngine.AddCOMType(System.String,System.Guid,System.String)">
@@ -3212,7 +3522,7 @@
             <param name="serverName">The name of the server from which to import the type.</param>
             <remarks>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptEngine.AddCOMType(System.String,Microsoft.ClearScript.HostItemFlags,System.Guid)">
@@ -3225,7 +3535,7 @@
             <param name="clsid">The class identifier (CLSID) of the registered class to import.</param>
             <remarks>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptEngine.AddCOMType(System.String,Microsoft.ClearScript.HostItemFlags,System.Guid,System.String)">
@@ -3239,7 +3549,7 @@
             <param name="serverName">The name of the server from which to import the type.</param>
             <remarks>
             For information about the mapping between host members and script-callable properties
-            and methods, see <see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/>.
+            and methods, see <c><see cref="M:Microsoft.ClearScript.ScriptEngine.AddHostObject(System.String,Microsoft.ClearScript.HostItemFlags,System.Object)"/></c>.
             </remarks>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptEngine.Execute(System.String)">
@@ -3354,7 +3664,7 @@
             <param name="command">The script command to execute.</param>
             <returns>The command output.</returns>
             <remarks>
-            This method is similar to <see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String)"/> but optimized for command
+            This method is similar to <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String)"/></c> but optimized for command
             consoles. The specified command must be limited to a single expression or statement.
             Script engines can override this method to customize command execution as well as the
             process of converting the result to a string for console output.
@@ -3379,7 +3689,7 @@
             </para>
             <para>
             For information about the types of result values that script code can return, see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/>.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3402,7 +3712,7 @@
             </para>
             <para>
             For information about the types of result values that script code can return, see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/>.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3436,17 +3746,17 @@
                 </listheader>
                 <item>
                     <term><b>String</b></term>
-                    <term><see href="https://docs.microsoft.com/en-us/dotnet/api/system.string">System.String</see></term>
+                    <term><c><see href="https://docs.microsoft.com/en-us/dotnet/api/system.string">System.String</see></c></term>
                     <description>N/A</description>
                 </item>
                 <item>
                     <term><b>Boolean</b></term>
-                    <term><see href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">System.Boolean</see></term>
+                    <term><c><see href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">System.Boolean</see></c></term>
                     <description>N/A</description>
                 </item>
                 <item>
                     <term><b>Number</b></term>
-                    <term><see href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">System.Int32</see>&#xA0;or&#xA0;<see href="https://docs.microsoft.com/en-us/dotnet/api/system.double">System.Double</see></term>
+                    <term><c><see href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">System.Int32</see></c>&#xA0;or&#xA0;<c><see href="https://docs.microsoft.com/en-us/dotnet/api/system.double">System.Double</see></c></term>
                     <description>
                     Other numeric types are possible. The exact conversions between script and .NET
                     numeric types are defined by the script engine.
@@ -3459,18 +3769,18 @@
                 </item>
                 <item>
                     <term><b>Undefined</b></term>
-                    <term><see cref="T:Microsoft.ClearScript.Undefined"/></term>
+                    <term><c><see cref="T:Microsoft.ClearScript.Undefined"/></c></term>
                     <description>
                     This represents JavaScript's
-                    <see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</see>,
+                    <c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</see></c>,
                     VBScript's
-                    <see href="https://docs.microsoft.com/en-us/previous-versions//f8tbc79x(v=vs.85)">Empty</see>,
+                    <c><see href="https://docs.microsoft.com/en-us/previous-versions//f8tbc79x(v=vs.85)">Empty</see></c>,
                     etc.
                     </description>
                 </item>
                 <item>
                     <term><b>Void</b></term>
-                    <term><see cref="T:Microsoft.ClearScript.VoidResult"/></term>
+                    <term><c><see cref="T:Microsoft.ClearScript.VoidResult"/></c></term>
                     <description>
                     This is returned when script code forwards the result of a host method that returns no value.
                     </description>
@@ -3487,10 +3797,10 @@
                 </item>
                 <item>
                     <term><b>Script&#xA0;Object</b></term>
-                    <term><see cref="T:Microsoft.ClearScript.ScriptObject"/></term>
+                    <term><c><see cref="T:Microsoft.ClearScript.ScriptObject"/></c></term>
                     <description>
                     This includes all native script objects that have no .NET representation. C#'s
-                    <see href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types#the-dynamic-type">dynamic</see>
+                    <c><see href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types#the-dynamic-type">dynamic</see></c>
                     keyword provides a convenient way to access them.
                     </description>
                 </item>
@@ -3522,7 +3832,7 @@
             </para>
             <para>
             For information about the types of result values that script code can return, see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/>.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3540,7 +3850,7 @@
             </para>
             <para>
             For information about the types of result values that script code can return, see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/>.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3559,7 +3869,7 @@
             </para>
             <para>
             For information about the types of result values that script code can return, see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/>.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3579,7 +3889,7 @@
             </para>
             <para>
             For information about the types of result values that script code can return, see
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/>.
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/></c>.
             </para>
             </remarks>
         </member>
@@ -3632,10 +3942,10 @@
             </summary>
             <param name="disposing"><c>True</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
             <remarks>
-            This method is called by the public <see cref="M:Microsoft.ClearScript.ScriptEngine.Dispose"/> method and the
-            <see cref="M:Microsoft.ClearScript.ScriptEngine.Finalize">Finalize</see> method. <see cref="M:Microsoft.ClearScript.ScriptEngine.Dispose"/> invokes the
+            This method is called by the public <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Dispose"/></c> method and the
+            <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Finalize">Finalize</see></c> method. <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Dispose"/></c> invokes the
             protected <c>Dispose(Boolean)</c> method with the <paramref name="disposing"/>
-            parameter set to <c>true</c>. <see cref="M:Microsoft.ClearScript.ScriptEngine.Finalize">Finalize</see> invokes
+            parameter set to <c>true</c>. <c><see cref="M:Microsoft.ClearScript.ScriptEngine.Finalize">Finalize</see></c> invokes
             <c>Dispose(Boolean)</c> with <paramref name="disposing"/> set to <c>false</c>.
             </remarks>
         </member>
@@ -3644,10 +3954,10 @@
             Releases unmanaged resources and performs other cleanup operations before the script engine is reclaimed by garbage collection.
             </summary>
             <remarks>
-            This method overrides <see cref="M:System.Object.Finalize"/>. Application code should not
+            This method overrides <c><see cref="M:System.Object.Finalize"/></c>. Application code should not
             call this method; an object's <c>Finalize()</c> method is automatically invoked during
             garbage collection, unless finalization by the garbage collector has been disabled by a
-            call to <see cref="M:System.GC.SuppressFinalize(System.Object)"/>.
+            call to <c><see cref="M:System.GC.SuppressFinalize(System.Object)"/></c>.
             </remarks>
         </member>
         <member name="T:Microsoft.ClearScript.ScriptEngineException">
@@ -3657,32 +3967,32 @@
         </member>
         <member name="M:Microsoft.ClearScript.ScriptEngineException.#ctor">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptEngineException"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptEngineException"/></c> instance.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptEngineException.#ctor(System.String)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptEngineException"/> with the specified error message.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptEngineException"/></c> with the specified error message.
             </summary>
             <param name="message">The error message.</param>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptEngineException.#ctor(System.String,System.Exception)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptEngineException"/> with the specified error message and nested exception.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptEngineException"/></c> with the specified error message and nested exception.
             </summary>
             <param name="message">The error message.</param>
             <param name="innerException">The exception that caused the current exception to be thrown.</param>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptEngineException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptEngineException"/> with serialized data.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptEngineException"/></c> with serialized data.
             </summary>
             <param name="info">The object that holds the serialized data.</param>
             <param name="context">The contextual information about the source or destination.</param>
         </member>
         <member name="P:Microsoft.ClearScript.ScriptEngineException.Microsoft#ClearScript#IScriptEngineException#HResult">
             <summary>
-            Gets an <see href="http://en.wikipedia.org/wiki/HRESULT">HRESULT</see> error code if one is available, zero otherwise.
+            Gets an <c><see href="http://en.wikipedia.org/wiki/HRESULT">HRESULT</see></c> error code if one is available, zero otherwise.
             </summary>
         </member>
         <member name="P:Microsoft.ClearScript.ScriptEngineException.EngineName">
@@ -3710,6 +4020,11 @@
             Gets the script exception that caused the current exception to be thrown, or <c>null</c> if one was not specified.
             </summary>
         </member>
+        <member name="P:Microsoft.ClearScript.ScriptEngineException.ScriptExceptionAsObject">
+            <summary>
+            Gets the script exception that caused the current exception to be thrown, or <c>null</c> if one was not specified, without engaging the dynamic infrastructure.
+            </summary>
+        </member>
         <member name="M:Microsoft.ClearScript.ScriptEngineException.ToString">
             <summary>
             Returns a string that represents the current exception.
@@ -3718,10 +4033,10 @@
         </member>
         <member name="M:Microsoft.ClearScript.ScriptEngineException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
-            Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+            Populates a <c><see cref="T:System.Runtime.Serialization.SerializationInfo"/></c> with the data needed to serialize the target object.
             </summary>
-            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
-            <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+            <param name="info">The <c><see cref="T:System.Runtime.Serialization.SerializationInfo"/></c> to populate with data.</param>
+            <param name="context">The destination (see <c><see cref="T:System.Runtime.Serialization.StreamingContext"/></c>) for this serialization.</param>
         </member>
         <member name="T:Microsoft.ClearScript.ScriptInterruptedException">
             <summary>
@@ -3730,32 +4045,32 @@
         </member>
         <member name="M:Microsoft.ClearScript.ScriptInterruptedException.#ctor">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptInterruptedException"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptInterruptedException"/></c> instance.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptInterruptedException.#ctor(System.String)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptInterruptedException"/> with the specified error message.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptInterruptedException"/></c> with the specified error message.
             </summary>
             <param name="message">The error message.</param>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptInterruptedException.#ctor(System.String,System.Exception)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptInterruptedException"/> with the specified error message and nested exception.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptInterruptedException"/></c> with the specified error message and nested exception.
             </summary>
             <param name="message">The error message.</param>
             <param name="innerException">The exception that caused the current exception to be thrown.</param>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptInterruptedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptInterruptedException"/> with serialized data.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptInterruptedException"/></c> with serialized data.
             </summary>
             <param name="info">The object that holds the serialized data.</param>
             <param name="context">The contextual information about the source or destination.</param>
         </member>
         <member name="P:Microsoft.ClearScript.ScriptInterruptedException.Microsoft#ClearScript#IScriptEngineException#HResult">
             <summary>
-            Gets an <see href="http://en.wikipedia.org/wiki/HRESULT">HRESULT</see> error code if one is available, zero otherwise.
+            Gets an <c><see href="http://en.wikipedia.org/wiki/HRESULT">HRESULT</see></c> error code if one is available, zero otherwise.
             </summary>
         </member>
         <member name="P:Microsoft.ClearScript.ScriptInterruptedException.EngineName">
@@ -3783,6 +4098,11 @@
             Gets the script exception that caused the current exception to be thrown, or <c>null</c> if one was not specified.
             </summary>
         </member>
+        <member name="P:Microsoft.ClearScript.ScriptInterruptedException.ScriptExceptionAsObject">
+            <summary>
+            Gets the script exception that caused the current exception to be thrown, or <c>null</c> if one was not specified, without engaging the dynamic infrastructure.
+            </summary>
+        </member>
         <member name="M:Microsoft.ClearScript.ScriptInterruptedException.ToString">
             <summary>
             Returns a string that represents the current exception.
@@ -3791,10 +4111,10 @@
         </member>
         <member name="M:Microsoft.ClearScript.ScriptInterruptedException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
-            Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+            Populates a <c><see cref="T:System.Runtime.Serialization.SerializationInfo"/></c> with the data needed to serialize the target object.
             </summary>
-            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
-            <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+            <param name="info">The <c><see cref="T:System.Runtime.Serialization.SerializationInfo"/></c> to populate with data.</param>
+            <param name="context">The destination (see <c><see cref="T:System.Runtime.Serialization.StreamingContext"/></c>) for this serialization.</param>
         </member>
         <member name="T:Microsoft.ClearScript.ScriptMemberAttribute">
             <summary>
@@ -3807,51 +4127,51 @@
         </member>
         <member name="M:Microsoft.ClearScript.ScriptMemberAttribute.#ctor">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/></c> instance.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptMemberAttribute.#ctor(System.String)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/> instance with the specified name.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/></c> instance with the specified name.
             </summary>
             <param name="name">The name that script code will use to access the target type member.</param>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptMemberAttribute.#ctor(Microsoft.ClearScript.ScriptAccess)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/> instance with the specified script access setting.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/></c> instance with the specified script access setting.
             </summary>
             <param name="access">The script access setting for the target type member.</param>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptMemberAttribute.#ctor(System.String,Microsoft.ClearScript.ScriptAccess)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/> instance with the specified name and script access setting.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/></c> instance with the specified name and script access setting.
             </summary>
             <param name="name">The name that script code will use to access the target type member.</param>
             <param name="access">The script access setting for the target type member.</param>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptMemberAttribute.#ctor(Microsoft.ClearScript.ScriptMemberFlags)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/> instance with the specified script options.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/></c> instance with the specified script options.
             </summary>
             <param name="flags">The script options for the target type member.</param>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptMemberAttribute.#ctor(System.String,Microsoft.ClearScript.ScriptMemberFlags)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/> instance with the specified name and script options.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/></c> instance with the specified name and script options.
             </summary>
             <param name="name">The name that script code will use to access the target type member.</param>
             <param name="flags">The script options for the target type member.</param>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptMemberAttribute.#ctor(Microsoft.ClearScript.ScriptAccess,Microsoft.ClearScript.ScriptMemberFlags)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/> instance with the specified script access setting and script options.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/></c> instance with the specified script access setting and script options.
             </summary>
             <param name="access">The script access setting for the target type member.</param>
             <param name="flags">The script options for the target type member.</param>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptMemberAttribute.#ctor(System.String,Microsoft.ClearScript.ScriptAccess,Microsoft.ClearScript.ScriptMemberFlags)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/> instance with the specified name, script access setting, and script options.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptMemberAttribute"/></c> instance with the specified name, script access setting, and script options.
             </summary>
             <param name="name">The name that script code will use to access the target type member.</param>
             <param name="access">The script access setting for the target type member.</param>
@@ -3897,15 +4217,15 @@
             <c><see href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</see></c>,
             VBScript's
             <c><see href="https://docs.microsoft.com/en-us/previous-versions//f8tbc79x(v=vs.85)">Nothing</see></c>,
-            and other similar values. Instead, use <see cref="M:Microsoft.ClearScript.HostFunctions.isNull(System.Object)"/> or
-            <see cref="M:System.Object.Equals(System.Object,System.Object)"/> to perform such a comparison.
+            and other similar values. Instead, use <c><see cref="M:Microsoft.ClearScript.HostFunctions.isNull(System.Object)"/></c> or
+            <c><see cref="M:System.Object.Equals(System.Object,System.Object)"/></c> to perform such a comparison.
             </summary>
         </member>
         <member name="T:Microsoft.ClearScript.ScriptObject">
             <summary>
             Represents a script object.
             </summary>
-            <seealso cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/>
+            <c><seealso cref="M:Microsoft.ClearScript.ScriptEngine.Evaluate(System.String,System.Boolean,System.String)"/></c>
         </member>
         <member name="P:Microsoft.ClearScript.ScriptObject.Engine">
             <summary>
@@ -4000,6 +4320,13 @@
             <param name="args">Optional arguments for method invocation.</param>
             <returns>The invocation result value.</returns>
         </member>
+        <member name="M:Microsoft.ClearScript.ScriptObject.InvokeAsFunction(System.Object[])">
+            <summary>
+            Invokes the script object as a function.
+            </summary>
+            <param name="args">Optional arguments for object invocation.</param>
+            <returns>The invocation result value.</returns>
+        </member>
         <member name="T:Microsoft.ClearScript.ScriptUsageAttribute">
             <summary>
             Specifies how the target type member is to be exposed to script code.
@@ -4010,12 +4337,12 @@
         </member>
         <member name="M:Microsoft.ClearScript.ScriptUsageAttribute.#ctor">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptUsageAttribute"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptUsageAttribute"/></c> instance.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.ScriptUsageAttribute.#ctor(Microsoft.ClearScript.ScriptAccess)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.ScriptUsageAttribute"/> instance with the specified script access setting.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.ScriptUsageAttribute"/></c> instance with the specified script access setting.
             </summary>
             <param name="access">The script access setting for the target type member.</param>
         </member>
@@ -4026,12 +4353,12 @@
         </member>
         <member name="T:Microsoft.ClearScript.StringDocument">
             <summary>
-            Provides an in-memory <see cref="T:Microsoft.ClearScript.Document"/> implementation for a text document.
+            Provides an in-memory <c><see cref="T:Microsoft.ClearScript.Document"/></c> implementation for a text document.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.StringDocument.#ctor(Microsoft.ClearScript.DocumentInfo,System.String)">
             <summary>
-            Initializes a new <see cref="T:Microsoft.ClearScript.StringDocument"/> instance.
+            Initializes a new <c><see cref="T:Microsoft.ClearScript.StringDocument"/></c> instance.
             </summary>
             <param name="info">A structure containing meta-information for the document.</param>
             <param name="contents">A string containing the document's contents.</param>
@@ -4046,8 +4373,8 @@
             Gets a stream that provides read access to the document.
             </summary>
             <remarks>
-            The <see cref="T:Microsoft.ClearScript.StringDocument"/> implementation of this property returns a
-            <see cref="T:System.IO.MemoryStream"/> instance.
+            The <c><see cref="T:Microsoft.ClearScript.StringDocument"/></c> implementation of this property returns a
+            <c><see cref="T:System.IO.MemoryStream"/></c> instance.
             </remarks>
         </member>
         <member name="P:Microsoft.ClearScript.StringDocument.Encoding">
@@ -4055,7 +4382,7 @@
             Gets the document's character encoding.
             </summary>
             <remarks>
-            <see cref="T:Microsoft.ClearScript.StringDocument"/> instances return <see cref="P:System.Text.Encoding.UTF8"/> for this property.
+            <c><see cref="T:Microsoft.ClearScript.StringDocument"/></c> instances return <c><see cref="P:System.Text.Encoding.UTF8"/></c> for this property.
             </remarks>
         </member>
         <member name="T:Microsoft.ClearScript.Undefined">
@@ -4065,12 +4392,13 @@
             <remarks>
             Some script languages support one or more special non-<c>null</c> values that represent
             nonexistent, missing, unknown, or undefined data. The ClearScript library maps such values
-            to instances of this class.
+            to an instance of this class.
             </remarks>
+            <c><seealso cref="P:Microsoft.ClearScript.ScriptEngine.UndefinedImportValue"/></c>
         </member>
         <member name="F:Microsoft.ClearScript.Undefined.Value">
             <summary>
-            The sole instance of the <see cref="T:Microsoft.ClearScript.Undefined"/> class.
+            The sole instance of the <c><see cref="T:Microsoft.ClearScript.Undefined"/></c> class.
             </summary>
         </member>
         <member name="M:Microsoft.ClearScript.Undefined.ToString">
@@ -4079,8 +4407,38 @@
             </summary>
             <returns>A string that represents the current object.</returns>
             <remarks>
-            The <see cref="T:Microsoft.ClearScript.Undefined"/> version of this method returns "[undefined]".
+            The <c><see cref="T:Microsoft.ClearScript.Undefined"/></c> version of this method returns "[undefined]".
             </remarks>
+        </member>
+        <member name="T:Microsoft.ClearScript.Util.IScriptableEnumerator">
+            <exclude/>
+        </member>
+        <member name="P:Microsoft.ClearScript.Util.IScriptableEnumerator.ScriptableCurrent">
+            <exclude/>
+        </member>
+        <member name="M:Microsoft.ClearScript.Util.IScriptableEnumerator.ScriptableMoveNext">
+            <exclude/>
+        </member>
+        <member name="M:Microsoft.ClearScript.Util.IScriptableEnumerator.ScriptableDispose">
+            <exclude/>
+        </member>
+        <member name="T:Microsoft.ClearScript.Util.IScriptableEnumerator`1">
+            <exclude/>
+        </member>
+        <member name="P:Microsoft.ClearScript.Util.IScriptableEnumerator`1.ScriptableCurrent">
+            <exclude/>
+        </member>
+        <member name="T:Microsoft.ClearScript.Util.IScriptableAsyncEnumerator`1">
+            <exclude/>
+        </member>
+        <member name="P:Microsoft.ClearScript.Util.IScriptableAsyncEnumerator`1.ScriptableCurrent">
+            <exclude/>
+        </member>
+        <member name="M:Microsoft.ClearScript.Util.IScriptableAsyncEnumerator`1.ScriptableMoveNextAsync">
+            <exclude/>
+        </member>
+        <member name="M:Microsoft.ClearScript.Util.IScriptableAsyncEnumerator`1.ScriptableDisposeAsync">
+            <exclude/>
         </member>
         <member name="T:Microsoft.ClearScript.VoidResult">
             <summary>
@@ -4088,9 +4446,26 @@
             </summary>
             <remarks>
             Some script languages expect every subroutine call to return a value. When script code
-            written in such a language invokes a host method that explicitly returns no value (such as
-            a C# <see href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/void">void</see> method),
-            the ClearScript library provides an instance of this class as a dummy return value.
+            written in such a language invokes a host method that explicitly returns no value (such
+            as a C#
+            <c><see href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/void">void</see></c>
+            method), the ClearScript library provides an instance of this class as a dummy return
+            value.
+            </remarks>
+            <c><seealso cref="P:Microsoft.ClearScript.ScriptEngine.VoidResultValue"/></c>
+        </member>
+        <member name="F:Microsoft.ClearScript.VoidResult.Value">
+            <summary>
+            The sole instance of the <c><see cref="T:Microsoft.ClearScript.VoidResult"/></c> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ClearScript.VoidResult.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+            <remarks>
+            The <c><see cref="T:Microsoft.ClearScript.VoidResult"/></c> version of this method returns "[void]".
             </remarks>
         </member>
     </members>
