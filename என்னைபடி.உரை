@@ -1,4 +1,4 @@
-# In the root directory (Git Bash) run:
+# In the root directory run:
 git config core.symlinks true
 
 # Now run cmd.exe as administrator¹ and cd to .github. Make your symlink:
